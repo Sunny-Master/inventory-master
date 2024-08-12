@@ -1,6 +1,13 @@
 <%- include('../partials/html-head') %>
 <%- include('../partials/nav') %>
 
-<h1>You selected <%= selectedUser.username %></h1>
+<main>
+  <h1>My inventories page for <%= selectedUser.username %></h1>
+  <h2>Create an Inventory</h2>
+  <form action="/inventories" method="post">
+    <input type="text" name="name" placeholder="Name of Inventory">
+    <button type="submit">Create</button>
+  </form>
+</main>
 
 <%- include('../partials/footer') %>

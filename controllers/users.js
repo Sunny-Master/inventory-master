@@ -4,7 +4,8 @@ async function index(req, res) {
   try {
     const users = await User.find({})
     res.render('users/index', {
-      users
+      users,
+      title: 'All Users',
     })
   } catch (error) {
     console.log(error)

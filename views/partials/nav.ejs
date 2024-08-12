@@ -9,7 +9,6 @@
   Inventories
   </a>
   <% if (user) { %>
-    <h1>Welcome, <%= user.username %>!</h1>
     <a 
     href="/users/<%= user._id %>"
     class=<%= title === 'My Inventories' ? 'active' : '' %>
@@ -19,7 +18,6 @@
     <a href="/users">Users</a>
     <a href="/auth/sign-out">Sign out</a>
   <% } else { %>
-    <h1>Please sign in!</h1>
     <a 
     href="/auth/sign-up"
     class=<%= title === 'Sign up' ? 'active' : '' %>
