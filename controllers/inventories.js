@@ -28,9 +28,11 @@ async function show(req, res) {
   try {
     const inventory = await Inventory.findById(req.params.inventoryId)
     .populate(['owner', 'managers', 'items'])
+    const sortInventory = !!req.query['sort']
     res.render('inventories/show', {
       inventory,
-      title: 'Inventory Details'
+      title: 'Inventory Details',
+      sortInventory
     })
   } catch (error) {
     console.log(error)
@@ -55,7 +57,6 @@ async function newItem(req, res) {
 }
 
 async function addItem(req, res) {
-  console.log(req.body)
   const inventory = await Inventory.findById(req.params.inventoryId)
   try {
     if (inventory.owner.equals(req.session.user._id)) {

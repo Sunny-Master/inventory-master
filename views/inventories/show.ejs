@@ -2,18 +2,38 @@
 <%- include('../partials/nav') %>
   <main>
     <h1><%= inventory.name %> Inventory</h1>
-    <h2><%= inventory.owner.username %></h2>
-    <div class="card-container">
-      <% inventory.items.forEach(item => { %>
-          <div class="card">
-            <div class="card-body">
-              <h2><%= item.quantity %> <%= item.unit %> <%= item.brand %></h2>
-              <h1 class="card-title inline"><%= item.name %> </h1>
-              <h2 class="inline">with Utility: <%= item.utility %></h2>
-            </div>
-          </div>
-        </a>
-      <% }) %>
-    </div>
+    <h2>Owner: <%= inventory.owner.username %></h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Item</th>
+          <th>Brand</th>
+          <th>Quantity</th>
+          <th>unit</th>
+          <th>
+            <% if (sortInventory) { %>
+              <a href="/inventories/<%= inventory._id %>">Utility</a>
+            <% } else { %>
+              <a href="/inventories/<%= inventory._id %>?sort=true">Utility</a>
+            <% } %>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <% sortInventory ? inventory.items.sort((a, b) => a.utility - b.utility) : inventory.items.sort((a, b) => b.utility - a.utility)%>
+        <% inventory.items.forEach(item => { %>
+          <tr>
+            <td><%= item.name %></td>
+            <td><%= item.brand%></td>
+            <td><%= item.quantity %></td>
+            <td><%= item.unit %></td>
+            <td><%= item.utility %></td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+    <% if (inventory.owner.equals(user?._id)) { %>
+      <a href="/inventories/<%= inventory._id %>/items/new"><button>Add Item</button></a>
+    <% } %>
   </main>
 <%- include('../partials/footer') %>
