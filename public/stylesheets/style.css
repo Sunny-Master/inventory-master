@@ -1,0 +1,112 @@
+html {
+  box-sizing: border-box
+}
+
+/* The Universal Selector */
+*, /* All elements*/
+*::before, /* All ::before pseudo-elements */
+*::after { /* All ::after pseudo-elements */
+  /* height & width will now include border & padding by default
+  but can be over-ridden as needed */
+  box-sizing: inherit;
+}
+
+/* resets font size to be 62.5% of the user preference - 
+in most browser configurations this will be 10px */
+:root {
+  font-size: 62.5%;
+}
+
+body {
+  background-color: gainsboro;
+  /* Use a system font, if none are available use an available sans-serif font */
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+  margin: 0;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  background-color: azure;
+  padding: 10px;
+  min-height: 60px;
+  font-size: 150%;
+}
+
+nav > a {
+  margin: 0 20px;
+  text-decoration: none;
+  padding: 10px;
+  border-radius: 5px;
+  color: #424748;
+  font-weight: bold;
+
+}
+
+nav > a:hover {
+  color: white;
+  background-color: #424748;
+}
+
+nav > a.active {
+  color: white;
+  background-color: #424748;
+}
+
+#home-button {
+  object-fit: contain;
+  margin-right: auto;
+}
+
+main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+main > h1 {
+  font-size: 300%;
+}
+
+form.auth {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.card-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin: 20px;
+  max-width: 1600px;
+}
+
+.text-decoration-none {
+  text-decoration: none;
+}
+
+.card {
+  display: flex;
+  width: 300px;
+  background-color: white;
+  border: 2px solid black;
+  border-radius: 10px;
+  color: black;
+  padding: 10px;
+}
+
+.card-body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card-title {
+  font-size: 24px;
+  margin: 0 10px;
+}

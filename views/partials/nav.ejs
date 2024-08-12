@@ -1,0 +1,30 @@
+</head>
+<body>
+<nav>
+  <a href="/" id="home-button"><i class="fas fa-warehouse fa-3x"></a></i>
+  <a 
+  href="/inventories" 
+  class=<%= title === 'Inventories' ? 'active' : '' %>
+>
+  Inventories
+</a>
+  <% if (user) { %>
+    <h1>Welcome, <%= user.username %>!</h1>
+    <a href="/users">Users</a>
+    <a href="/auth/sign-out">Sign out</a>
+  <% } else { %>
+    <h1>Please sign in!</h1>
+    <a 
+    href="/auth/sign-up"
+    class=<%= title === 'Sign up' ? 'active' : '' %>
+    >
+    Sign up
+    </a>
+    <a 
+    href="/auth/sign-in"
+    class=<%= title === 'Sign in' ? 'active' : '' %>
+    >
+    Sign in
+  </a>
+  <% } %>
+</nav>
