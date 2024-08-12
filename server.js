@@ -15,6 +15,7 @@ import './config/database.js'
 import { router as indexRouter } from './routes/index.js'
 import { router as usersRouter } from './routes/users.js'
 import { router as authRouter } from './routes/auth.js'
+// import router for inventories
 import { router as inventoriesRouter } from './routes/inventories.js'
 
 // create the express app

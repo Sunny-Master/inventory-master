@@ -16,7 +16,8 @@ async function show(req, res) {
   try {
     const selectedUser = await User.findById(req.params.userId)
     res.render('users/show', {
-      selectedUser
+      selectedUser,
+      title: "My Inventories"
     })
   } catch (error) {
     console.log(error)

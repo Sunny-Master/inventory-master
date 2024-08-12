@@ -23,7 +23,7 @@ async function signUp(req, res) {
     _id: user._id
   }
   req.session.save(() => {
-    res.redirect('/')
+    res.redirect(`/users/${req.session.user._id}`)
   })
 }
 
@@ -50,7 +50,7 @@ async function signIn(req, res) {
     _id: userInDatabase._id
   }
   req.session.save(() => {
-    res.redirect('/')
+    res.redirect(`/users/${req.session.user._id}`)
   })
 }
 

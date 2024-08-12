@@ -5,11 +5,17 @@
   <a 
   href="/inventories" 
   class=<%= title === 'Inventories' ? 'active' : '' %>
->
+  >
   Inventories
-</a>
+  </a>
   <% if (user) { %>
     <h1>Welcome, <%= user.username %>!</h1>
+    <a 
+    href="/users/<%= user._id %>"
+    class=<%= title === 'My Inventories' ? 'active' : '' %>
+    >
+    My Inventories
+    </a>
     <a href="/users">Users</a>
     <a href="/auth/sign-out">Sign out</a>
   <% } else { %>
