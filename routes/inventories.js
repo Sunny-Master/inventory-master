@@ -6,6 +6,7 @@ const router = Router()
 
 // public routes
 router.get('/', inventoriesCtrl.index)
+router.get('/:inventoryId', inventoriesCtrl.show)
 
 // protected routes
 router.post('/', isSignedIn, inventoriesCtrl.create)

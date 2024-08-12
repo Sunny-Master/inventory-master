@@ -24,7 +24,22 @@ async function create(req, res) {
   }
 }
 
+async function show(req, res) {
+  try {
+    const inventory = await Inventory.findById(req.params.inventoryId)
+    .populate(['owner', 'managers', 'items'])
+    res.render('inventories/show', {
+      inventory,
+      title: 'Inventory Details'
+    })
+  } catch (error) {
+    console.log(error)
+    res.redirect('/inventories')
+  }
+}
+
 export {
   index,
   create,
+  show,
 }
