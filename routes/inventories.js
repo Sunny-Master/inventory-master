@@ -9,6 +9,9 @@ router.get('/', inventoriesCtrl.index)
 router.get('/:inventoryId', inventoriesCtrl.show)
 
 // protected routes
+router.get('/:inventoryId/items/new', isSignedIn, inventoriesCtrl.newItem)
+
 router.post('/', isSignedIn, inventoriesCtrl.create)
+
 
 export { router }

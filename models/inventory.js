@@ -23,7 +23,7 @@ const itemSchema = new Schema({
   },
   utility: {
     type: Number,
-    min: 0,
+    min: 1,
     max: 10,
     default: 3,
   }

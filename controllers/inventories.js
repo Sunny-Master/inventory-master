@@ -16,8 +16,8 @@ async function index(req, res) {
 async function create(req, res) {
   try {
     req.body.owner = req.session.user._id
-    await Inventory.create(req.body)
-    res.redirect('/inventories')
+    const inventory = await Inventory.create(req.body)
+    res.redirect(`/inventories/${inventory._id}/items/new`)
   } catch (error) {
     console.log(error)
     res.redirect('/')
@@ -38,8 +38,25 @@ async function show(req, res) {
   }
 }
 
+async function newItem(req, res) {
+  try {
+    // find inventory by id
+    const inventory = await Inventory.findById(req.params.inventoryId)
+    .populate(['owner', 'items'])
+    // pass the inventory as 'locals' object to 'inventories/newItem.ejs'
+    res.render('inventories/newItem', {
+      inventory,
+      title: 'Add Item'
+    })
+  } catch (error) {
+    console.log(error)
+    res.redirect('/inventories')
+  }
+}
+
 export {
   index,
   create,
   show,
+  newItem,
 }
