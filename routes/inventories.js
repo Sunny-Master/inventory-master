@@ -8,5 +8,6 @@ const router = Router()
 router.get('/', inventoriesCtrl.index)
 
 // protected routes
+router.post('/', isSignedIn, inventoriesCtrl.create)
 
 export { router }
