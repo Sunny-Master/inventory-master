@@ -1,0 +1,21 @@
+<%- include('../partials/html-head') %>
+<%- include('../partials/nav') %>
+
+<main>
+  <h1><%= title %></h1>
+  
+  <ul>
+    <% inventories.forEach(inventory => { %>
+      <li>
+        🌮
+        <a href="/inventories/<%= inventory._id %>">
+          <%= inventory.name %>
+        </a> 
+        -
+        <%= inventory.owner %>
+      </li>
+    <% }) %>
+  </ul>
+</main>
+
+<%- include('../partials/footer') %>
