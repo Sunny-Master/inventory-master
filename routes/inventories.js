@@ -12,6 +12,7 @@ router.get('/:inventoryId', inventoriesCtrl.show)
 router.get('/:inventoryId/items/new', isSignedIn, inventoriesCtrl.newItem)
 
 router.post('/', isSignedIn, inventoriesCtrl.create)
+router.post('/:inventoryId/items', isSignedIn, inventoriesCtrl.addItem)
 
 
 export { router }

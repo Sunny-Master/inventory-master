@@ -7,12 +7,9 @@
       <% inventory.items.forEach(item => { %>
           <div class="card">
             <div class="card-body">
-              <h1 class="card-title inline"><%= item.name %></h1>
-              <p class="inline">Brand: <%= item.brand %></p>
-              <p class="inline">Quantity: <%= item.quantity %></p>
-              <p class="inline">Unit: <%= item.unit %></p>
-              <p class="inline">Utility: <%= item.utility %></p>
-              <p></p>
+              <h2><%= item.quantity %> <%= item.unit %> <%= item.brand %></h2>
+              <h1 class="card-title inline"><%= item.name %> </h1>
+              <h2 class="inline">with Utility: <%= item.utility %></h2>
             </div>
           </div>
         </a>

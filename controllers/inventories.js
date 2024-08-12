@@ -54,9 +54,27 @@ async function newItem(req, res) {
   }
 }
 
+async function addItem(req, res) {
+  console.log(req.body)
+  const inventory = await Inventory.findById(req.params.inventoryId)
+  try {
+    if (inventory.owner.equals(req.session.user._id)) {
+      inventory.items.push(req.body) 
+      await inventory.save()
+      res.redirect(`/inventories/${inventory._id}`)
+    } else {
+      throw new Error(`🚫 Not authorized 🚫`)
+    }
+  } catch (error) {
+    console.log(error)
+    res.redirect(`/inventories/${inventory._id}`)
+  }
+}
+
 export {
   index,
   create,
   show,
   newItem,
+  addItem,
 }
