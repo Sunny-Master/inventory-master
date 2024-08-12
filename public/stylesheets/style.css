@@ -75,6 +75,10 @@ main > h2 {
   font-size: 250%;
 }
 
+main > h3 {
+  font-size: 200%;
+}
+
 form.auth {
   display: flex;
   flex-direction: column;

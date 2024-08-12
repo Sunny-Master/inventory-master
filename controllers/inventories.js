@@ -1,4 +1,5 @@
 import { Inventory } from "../models/inventory.js"
+import { User } from "../models/user.js"
 
 async function index(req, res) {
   try {
@@ -17,6 +18,7 @@ async function create(req, res) {
   try {
     req.body.owner = req.session.user._id
     const inventory = await Inventory.create(req.body)
+    await User.findByIdAndUpdate(req.body.owner, { 'ownedInventories': inventory }, {new: true})
     res.redirect(`/inventories/${inventory._id}/items/new`)
   } catch (error) {
     console.log(error)
