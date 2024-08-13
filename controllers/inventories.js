@@ -50,6 +50,25 @@ async function show(req, res) {
   }
 }
 
+async function deleteInventory(req, res) {
+  try {
+    // find inventory by id 
+    const inventory = await Inventory.findById(req.params.inventoryId)
+    if (inventory.owner.equals(req.session.user._id)) {
+      const inventoryOwner = await User.findById(req.session.user._id)
+      inventoryOwner.ownedInventories.remove(inventory)
+      await inventoryOwner.save()
+      await inventory.deleteOne()
+      res.redirect(`/users/${req.session.user._id}`)
+    } else {
+      throw new Error('🚫 Not authorized 🚫')
+    }
+  } catch (error) {
+    console.log(error)
+    res.redirect('/inventories')
+  }
+}
+
 async function newItem(req, res) {
   try {
     // find inventory by id
@@ -112,6 +131,7 @@ export {
   index,
   create,
   show,
+  deleteInventory as delete,
   newItem,
   addItem,
   addManager,

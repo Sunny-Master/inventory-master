@@ -164,6 +164,11 @@ button:hover {
   color: white;
 }
 
+.remove-button {
+  background-color: red;
+  color: white;
+}
+
 table {
   font-size: 20px;
   border-collapse: collapse;

@@ -11,9 +11,12 @@
   <h2>Owned Inventories</h2>
   <% selectedUser.ownedInventories.forEach(inventory => { %>
     <h3>
-      <a href="/inventories/<%= inventory._id %>">
-        <%= inventory.name %>
-      </a>
+      <form action="/inventories/<%= inventory._id %>?_method=DELETE" method="POST">
+        <a href="/inventories/<%= inventory._id %>">
+          <%= inventory.name %>
+        </a>
+        <button class="remove-button" type="submit">X</button>
+      </form>
     </h3>
   <% }) %>
   <h2>Managed Inventories</h2>

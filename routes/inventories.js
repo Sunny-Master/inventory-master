@@ -20,6 +20,8 @@ router.post('/', isSignedIn, inventoriesCtrl.create)
 router.post('/:inventoryId/items', isSignedIn, inventoriesCtrl.addItem)
 router.post('/:inventoryId/managers', isSignedIn, inventoriesCtrl.addManager)
 
+//DELETE /inventories...
+router.delete('/:inventoryId', isSignedIn, inventoriesCtrl.delete)
 
 
 export { router }
