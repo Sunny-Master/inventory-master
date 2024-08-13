@@ -104,6 +104,22 @@ async function addItem(req, res) {
   }
 }
 
+async function deleteItem(req, res) {
+  try {
+    const inventory = await Inventory.findById(req.params.inventoryId)
+    if (inventory.owner.equals(req.session.user._id)) {
+      inventory.items.remove({_id: req.params.itemId})
+      await inventory.save()
+      res.redirect(`/inventories/${inventory._id}`)
+    } else {
+      throw new Error(`🚫 Not authorized 🚫`)
+    }
+  } catch (error) {
+    console.log(error)
+    res.redirect(`/inventories/${req.params.inventoryId}`)
+  }
+}
+
 async function addManager(req, res) {
   // find inventory by id
   const inventory = await Inventory.findById(req.params.inventoryId)
@@ -154,6 +170,7 @@ export {
   deleteInventory as delete,
   newItem,
   addItem,
+  deleteItem,
   addManager,
   removeManager,
 }

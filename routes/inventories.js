@@ -23,5 +23,7 @@ router.post('/:inventoryId/managers', isSignedIn, inventoriesCtrl.addManager)
 //DELETE /inventories...
 router.delete('/:inventoryId', isSignedIn, inventoriesCtrl.delete)
 router.delete('/:inventoryId/managers/:managerId', isSignedIn, inventoriesCtrl.removeManager)
+router.delete('/:inventoryId/items/:itemId', isSignedIn, inventoriesCtrl.deleteItem)
+
 
 export { router }
