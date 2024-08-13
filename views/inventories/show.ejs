@@ -6,6 +6,7 @@
     
 
     <% if (isAuthorizedUser) { %>
+      
       <table>
         <thead>
           <tr>
@@ -45,7 +46,9 @@
         </tbody>
       </table>
       <% if (isOwner) { %>
-        <a href="/inventories/<%= inventory._id %>/items/new"><button>Add Item</button></a>
+        <div>
+          <a href="/inventories/<%= inventory._id %>/items/new"><button>Add Item</button></a>
+        </div>
         <h2>
           <i class="fa-solid fa-people-roof fa-1x"></i>
           Managers
@@ -68,7 +71,12 @@
             <% }) %>
           </select>
           <button type="submit">Add as a Manager</button>
-        </form>
+        </form><br>
+        <div>
+          <form action="/inventories/<%= inventory._id %>/toggle-view?_method=PATCH" method="POST">
+            <button type="submit">Make it <%= alterView %></button>
+          </form>
+        </div>
       <% } %>
     <% } else { %>
       <table>

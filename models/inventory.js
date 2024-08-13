@@ -38,7 +38,8 @@ const inventorySchema = new Schema({
   },
   items: [itemSchema],
   owner: {type: Schema.Types.ObjectId, ref: 'User'},
-  managers: [{type: Schema.Types.ObjectId, ref: 'User'}]
+  managers: [{type: Schema.Types.ObjectId, ref: 'User'}],
+  privateView: Boolean,
 }, {
   timestamps: true
 })

@@ -4,8 +4,9 @@ import { User } from "../models/user.js"
 async function index(req, res) {
   try {
     const inventories = await Inventory.find({}).populate('owner')
+    const inventoriesToShow = inventories.filter(inventory => !inventory.privateView)
     res.render('inventories/index', {
-      inventories,
+      inventoriesToShow,
       title: 'Inventories'
     })
   } catch (error) {
@@ -17,6 +18,7 @@ async function index(req, res) {
 async function create(req, res) {
   try {
     req.body.owner = req.session.user._id
+    req.body.privateView = true
     const inventory = await Inventory.create(req.body)
     const creator = await User.findById(req.body.owner)
     creator.ownedInventories.push(inventory)
@@ -40,13 +42,15 @@ async function show(req, res) {
     // retrieve and save all the user objects that are not in inventoryUsers array
     const otherUsers = await User.find({_id: {$nin: inventoryUsers}})
     const sortInventory = !!req.query['sort']
+    const alterView = inventory.privateView ? 'Public' : 'Private'
     res.render('inventories/show', {
       inventory,
       isAuthorizedUser,
       isOwner,
       otherUsers,
       title: 'Inventory Details',
-      sortInventory
+      sortInventory,
+      alterView
     })
   } catch (error) {
     console.log(error)
@@ -67,6 +71,18 @@ async function deleteInventory(req, res) {
     } else {
       throw new Error('🚫 Not authorized 🚫')
     }
+  } catch (error) {
+    console.log(error)
+    res.redirect('/inventories')
+  }
+}
+
+async function toggleView(req, res) {
+  try {
+    const inventory = await Inventory.findById(req.params.inventoryId)
+    inventory.privateView = !inventory.privateView
+    await inventory.save()
+    res.redirect(`/inventories/${req.params.inventoryId}`)
   } catch (error) {
     console.log(error)
     res.redirect('/inventories')
@@ -210,6 +226,7 @@ export {
   create,
   show,
   deleteInventory as delete,
+  toggleView,
   newItem,
   addItem,
   editItem,

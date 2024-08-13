@@ -30,5 +30,7 @@ router.delete('/:inventoryId/items/:itemId', isSignedIn, inventoriesCtrl.deleteI
 //PUT /inventories/:inventoryId/items/:itemId
 router.put('/:inventoryId/items/:itemId', isSignedIn, inventoriesCtrl.updateItem)
 
+//PATCH /inventories/:inventoryId
+router.patch('/:inventoryId/toggle-view', isSignedIn, inventoriesCtrl.toggleView)
 
 export { router }
