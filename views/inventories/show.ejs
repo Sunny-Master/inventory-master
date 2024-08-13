@@ -5,7 +5,7 @@
     <h2>Owner: <%= inventory.owner.username %></h2>
     
 
-    <% if (inventory.owner.equals(user?._id)) { %>
+    <% if (isAuthorizedUser) { %>
       <table>
         <thead>
           <tr>
@@ -34,38 +34,42 @@
               <td><%= item.utility %></td>
               <td>
                 <a class="edit-button" href="/inventories/<%= inventory._id %>/items/<%= item._id %>/edit"><button>Edit</button></a>
-                <form class="inline" action="/inventories/<%= inventory._id %>/items/<%= item._id %>?_method=DELETE" method="POST">
-                  <button class="remove-button" type="submit">X</button>
-                </form>
+                <% if (isOwner) { %>
+                  <form class="inline" action="/inventories/<%= inventory._id %>/items/<%= item._id %>?_method=DELETE" method="POST">
+                    <button class="remove-button" type="submit">X</button>
+                  </form>
+                <% } %>
               </td>
             </tr>
           <% }) %>
         </tbody>
       </table>
-      <a href="/inventories/<%= inventory._id %>/items/new"><button>Add Item</button></a>
-      <h2>
-        <i class="fa-solid fa-people-roof fa-1x"></i>
-        Managers
-      </h2>
-      <% inventory.managers.forEach(manager => { %>
-        <h3>
-          <form action="/inventories/<%= inventory._id %>/managers/<%= manager._id %>?_method=DELETE" method="POST">
-            <i class="fa-solid fa-user-tie"></i>
-            <%= manager.username %>
-            <button class="remove-button" type="submit">
-              <i class="fa-solid fa-user-xmark "></i>
-            </button>
-          </form>
-        </h3>
-      <% }) %>
-      <form action="/inventories/<%= inventory._id %>/managers" method="post">
-        <select name="managerId" >
-          <% otherUsers.forEach(u => { %>
-            <option value="<%= u._id %>"><%= u.username%></option>
-          <% }) %>
-        </select>
-        <button type="submit">Add as a Manager</button>
-      </form>
+      <% if (isOwner) { %>
+        <a href="/inventories/<%= inventory._id %>/items/new"><button>Add Item</button></a>
+        <h2>
+          <i class="fa-solid fa-people-roof fa-1x"></i>
+          Managers
+        </h2>
+        <% inventory.managers.forEach(manager => { %>
+          <h3>
+            <form action="/inventories/<%= inventory._id %>/managers/<%= manager._id %>?_method=DELETE" method="POST">
+              <i class="fa-solid fa-user-tie"></i>
+              <%= manager.username %>
+              <button class="remove-button" type="submit">
+                <i class="fa-solid fa-user-xmark "></i>
+              </button>
+            </form>
+          </h3>
+        <% }) %>
+        <form action="/inventories/<%= inventory._id %>/managers" method="post">
+          <select name="managerId" >
+            <% otherUsers.forEach(u => { %>
+              <option value="<%= u._id %>"><%= u.username%></option>
+            <% }) %>
+          </select>
+          <button type="submit">Add as a Manager</button>
+        </form>
+      <% } %>
     <% } else { %>
       <table>
         <thead>
