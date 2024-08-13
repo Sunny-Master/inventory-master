@@ -27,5 +27,8 @@ router.delete('/:inventoryId', isSignedIn, inventoriesCtrl.delete)
 router.delete('/:inventoryId/managers/:managerId', isSignedIn, inventoriesCtrl.removeManager)
 router.delete('/:inventoryId/items/:itemId', isSignedIn, inventoriesCtrl.deleteItem)
 
+//PUT /inventories/:inventoryId/items/:itemId
+router.put('/:inventoryId/items/:itemId', isSignedIn, inventoriesCtrl.updateItem)
+
 
 export { router }
