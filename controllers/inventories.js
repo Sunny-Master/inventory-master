@@ -104,6 +104,27 @@ async function addItem(req, res) {
   }
 }
 
+async function editItem(req, res) {
+  try {
+    const inventory = await Inventory.findById(req.params.inventoryId)
+    .populate('items')
+    const item = inventory.items.id(req.params.itemId)
+    console.log(item)
+    if (inventory.managers.includes(req.session.user._id) || inventory.owner.equals(req.session.user._id)) {
+      res.render('inventories/editItem', {
+      inventory,
+      item,
+      title: `Edit ${inventory.name} Item` 
+    })
+    } else {
+      throw new Error(`🚫 Not authorized 🚫`)
+    }
+  } catch (error) {
+    console.log(error)
+    res.redirect(`/inventories/${req.params.inventoryId}`)
+  }
+}
+
 async function deleteItem(req, res) {
   try {
     const inventory = await Inventory.findById(req.params.inventoryId)
@@ -170,6 +191,7 @@ export {
   deleteInventory as delete,
   newItem,
   addItem,
+  editItem,
   deleteItem,
   addManager,
   removeManager,

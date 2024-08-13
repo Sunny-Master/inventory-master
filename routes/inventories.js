@@ -14,6 +14,8 @@ router.get('/:inventoryId', inventoriesCtrl.show)
 
 //GET /inventories...
 router.get('/:inventoryId/items/new', isSignedIn, inventoriesCtrl.newItem)
+router.get('/:inventoryId/items/:itemId/edit', isSignedIn, inventoriesCtrl.editItem)
+
 
 //POST /inventories...
 router.post('/', isSignedIn, inventoriesCtrl.create)

@@ -34,19 +34,17 @@ nav {
   font-size: 150%;
 }
 
+a {
+  text-decoration: none;
+}
+
+
 nav > a {
   margin: 0 20px;
-  text-decoration: none;
   padding: 10px;
   border-radius: 5px;
   color: #424748;
   font-weight: bold;
-
-}
-
-nav > a:hover {
-  color: white;
-  background-color: #424748;
 }
 
 nav > a.active {
@@ -188,7 +186,7 @@ td {
   min-width: 100px;
 }
 
-tr:hover {
+tbody>tr:hover {
   background-color: #b8c0c2;
 }
 
