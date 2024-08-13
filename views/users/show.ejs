@@ -2,7 +2,7 @@
 <%- include('../partials/nav') %>
 
 <main>
-  <h1>My inventories page for <%= selectedUser.username %></h1>
+  <h1>Inventories page for <%= selectedUser.username %></h1>
   <h2>Create an Inventory</h2>
   <form action="/inventories" method="post">
     <input type="text" name="name" placeholder="Name of Inventory">
@@ -24,7 +24,6 @@
       </a>
     </h3>
   <% }) %>
-
 </main>
 
 <%- include('../partials/footer') %>

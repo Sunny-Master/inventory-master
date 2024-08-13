@@ -66,24 +66,17 @@ main {
   flex-direction: column;
 }
 
-main > h1 {
+main  h1 {
   font-size: 300%;
   margin-bottom: 10px;
 }
 
-main > h2 {
+main  h2 {
   font-size: 250%;
 }
 
-main > h3 {
+main  h3 {
   font-size: 200%;
-}
-
-form.auth {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
 }
 
 .card-container {
@@ -138,6 +131,14 @@ form * {
   padding: 5px;
   border-radius: 5px;
   font-size: 20px;
+}
+
+.auth {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
 }
 
 select, input {

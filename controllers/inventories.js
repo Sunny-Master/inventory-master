@@ -83,11 +83,18 @@ async function addItem(req, res) {
 }
 
 async function addManager(req, res) {
+  // find inventory by id
   const inventory = await Inventory.findById(req.params.inventoryId)
   try {
     if (inventory.owner.equals(req.session.user._id)) {
-      inventory.managers.push(req.body.managerId) 
+      // find user by req.body.managerId
+      const manager = await User.findById(req.body.managerId)
+      // add manager to inventory.managers
+      inventory.managers.push(manager) 
       await inventory.save()
+      // add inventory to manager.managedInventories
+      manager.managedInventories.push(inventory)
+      await manager.save()
       res.redirect(`/inventories/${inventory._id}`)
     } else {
       throw new Error(`🚫 Not authorized 🚫`)

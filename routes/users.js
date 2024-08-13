@@ -8,7 +8,7 @@ const router = Router()
 
 
 // protected routes
-router.get('/', isSignedIn, usersCtrl.index)
+// router.get('/', isSignedIn, usersCtrl.index)
 router.get('/:userId', isSignedIn, usersCtrl.show)
 
 export { router }
