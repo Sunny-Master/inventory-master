@@ -58,7 +58,7 @@ async function newItem(req, res) {
     // pass the inventory as 'locals' object to 'inventories/newItem.ejs'
     res.render('inventories/newItem', {
       inventory,
-      title: 'Add Item'
+      title: `Add a ${inventory.name} Item`
     })
   } catch (error) {
     console.log(error)
@@ -68,6 +68,9 @@ async function newItem(req, res) {
 
 async function addItem(req, res) {
   const inventory = await Inventory.findById(req.params.inventoryId)
+  for (let key in req.body) {
+    if(req.body[key] === "") delete req.body[key]
+  }
   try {
     if (inventory.owner.equals(req.session.user._id)) {
       inventory.items.push(req.body) 
