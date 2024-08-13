@@ -18,7 +18,9 @@ async function create(req, res) {
   try {
     req.body.owner = req.session.user._id
     const inventory = await Inventory.create(req.body)
-    await User.findByIdAndUpdate(req.body.owner, { 'ownedInventories': inventory }, {new: true})
+    const creator = await User.findById(req.body.owner)
+    creator.ownedInventories.push(inventory)
+    await creator.save()
     res.redirect(`/inventories/${inventory._id}/items/new`)
   } catch (error) {
     console.log(error)
@@ -30,9 +32,15 @@ async function show(req, res) {
   try {
     const inventory = await Inventory.findById(req.params.inventoryId)
     .populate(['owner', 'managers', 'items'])
+    // make a deep copy of inventory.managers in order to make a single array of all the users of inventory by pushing the inventory.owner to that deepcopy
+    const inventoryUsers = JSON.parse(JSON.stringify(inventory.managers))
+    inventoryUsers.push(inventory.owner)
+    // retrieve and save all the users that are not in inventoryUsers array
+    const otherUsers = await User.find({_id: {$nin: inventoryUsers}})
     const sortInventory = !!req.query['sort']
     res.render('inventories/show', {
       inventory,
+      otherUsers,
       title: 'Inventory Details',
       sortInventory
     })
@@ -74,10 +82,27 @@ async function addItem(req, res) {
   }
 }
 
+async function addManager(req, res) {
+  const inventory = await Inventory.findById(req.params.inventoryId)
+  try {
+    if (inventory.owner.equals(req.session.user._id)) {
+      inventory.managers.push(req.body.managerId) 
+      await inventory.save()
+      res.redirect(`/inventories/${inventory._id}`)
+    } else {
+      throw new Error(`🚫 Not authorized 🚫`)
+    }
+  } catch (error) {
+    console.log(error)
+    res.redirect(`/inventories/${inventory._id}`)
+  }
+}
+
 export {
   index,
   create,
   show,
   newItem,
   addItem,
+  addManager,
 }

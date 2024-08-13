@@ -11,13 +11,17 @@
   <h2>Owned Inventories</h2>
   <% selectedUser.ownedInventories.forEach(inventory => { %>
     <h3>
-      <%= inventory.name %>
+      <a href="/inventories/<%= inventory._id %>">
+        <%= inventory.name %>
+      </a>
     </h3>
   <% }) %>
   <h2>Managed Inventories</h2>
   <% selectedUser.managedInventories.forEach(inventory => { %>
     <h3>
-      <%= inventory.name %>
+      <a href="/inventories/<%= inventory._id %>">
+        <%= inventory.name %>
+      </a>
     </h3>
   <% }) %>
 

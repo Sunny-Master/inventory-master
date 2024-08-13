@@ -33,7 +33,21 @@
       </tbody>
     </table>
     <% if (inventory.owner.equals(user?._id)) { %>
-      <a href="/inventories/<%= inventory._id %>/items/new"><button>Add Item</button></a>
+      <a href="/inventories/<%= inventory._id %>/items/new"><button>Add Item</button></a><br>
+      <h2>Managers</h2>
+      <% inventory.managers.forEach(manager => { %>
+        <h3>
+        <%= manager.username %>
+        </h3>
+      <% }) %>
+      <form action="/inventories/<%= inventory._id %>/managers" method="post">
+        <select name="managerId" >
+          <% otherUsers.forEach(u => { %>
+            <option value="<%= u._id %>"><%= u.username%></option>
+          <% }) %>
+        </select>
+        <button type="submit">Add as a Manager</button>
+      </form>
     <% } %>
   </main>
 <%- include('../partials/footer') %>

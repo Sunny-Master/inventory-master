@@ -17,7 +17,6 @@ async function show(req, res) {
   try {
     const selectedUser = await User.findById(req.params.userId)
     .populate(['ownedInventories', 'managedInventories'])
-    console.log(selectedUser.ownedInventories)
     res.render('users/show', {
       selectedUser,
       title: "My Inventories"
