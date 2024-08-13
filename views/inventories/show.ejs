@@ -17,6 +17,7 @@
               <a href="/inventories/<%= inventory._id %>?sort=true">Utility</a>
             <% } %>
           </th>
+          <th></th>
         </tr>
       </thead>
       <tbody>
@@ -28,16 +29,28 @@
             <td><%= item.quantity %></td>
             <td><%= item.unit %></td>
             <td><%= item.utility %></td>
+            <td>
+
+            </td>
           </tr>
         <% }) %>
       </tbody>
     </table>
     <% if (inventory.owner.equals(user?._id)) { %>
       <a href="/inventories/<%= inventory._id %>/items/new"><button>Add Item</button></a><br>
-      <h2>Managers</h2>
+      <h2>
+        <i class="fa-solid fa-people-roof fa-1x"></i>
+        Managers
+      </h2>
       <% inventory.managers.forEach(manager => { %>
         <h3>
-        <%= manager.username %>
+          <form action="/inventories/<%= inventory._id %>/managers/<%= manager._id %>?_method=DELETE" method="POST">
+            <i class="fa-solid fa-user-tie"></i>
+            <%= manager.username %>
+            <button class="remove-button" type="submit">
+              <i class="fa-solid fa-user-xmark "></i>
+            </button>
+          </form>
         </h3>
       <% }) %>
       <form action="/inventories/<%= inventory._id %>/managers" method="post">

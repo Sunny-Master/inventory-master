@@ -127,6 +127,26 @@ async function addManager(req, res) {
   }
 }
 
+async function removeManager(req, res) {
+  try {
+    const inventory = await Inventory.findById(req.params.inventoryId)
+    if (inventory.owner.equals(req.session.user._id)) {
+      const inventoryManager = await User.findById(req.params.managerId)
+      inventoryManager.managedInventories.remove(inventory)
+      await inventoryManager.save()
+      inventory.managers.remove(inventoryManager)
+      await inventory.save()
+      res.redirect(`/inventories/${inventory._id}`)
+    } else {
+      throw new Error('🚫 Not authorized 🚫')
+    }
+  } catch (error) {
+    console.log(error)
+    res.redirect('/inventories')
+  }
+}
+
+
 export {
   index,
   create,
@@ -135,4 +155,5 @@ export {
   newItem,
   addItem,
   addManager,
+  removeManager,
 }
