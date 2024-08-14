@@ -3,8 +3,89 @@
 
 <main>
   <h1><%= title %></h1>
-  
-
+  <% if (suggestion.author.equals(user?._id) || isOwner) { %>
+    <form action="/inventories/<%= inventory._id %>/suggestions" method="post">
+      <div class="radio-input">
+        <label><input type="radio" class="radio-btn" name="type" value="<%= suggestion.type %>" checked> <%= suggestion.type %></label>
+        <label><input type="radio" class="radio-btn" name="type" value="<%= altSuggestionType %>"> <%= altSuggestionType %></label>
+      </div>
+      <label>
+        Item Name:
+        <input type="text" name="item.name" value="<%= suggestion.item.name %>">
+      </label>
+      <label>
+        Brand:
+        <input type="text" name="item.brand" value="<%= suggestion.item.brand %>">
+      </label>
+      <label>
+        Quantity:
+        <input type="number" name="item.quantity" value="<%= suggestion.item.quantity %>">
+      </label>
+      <label>
+        Unit:
+        <select name="item.unit" >
+          <option selected disabled value="<%= suggestion.item.unit %>"><%= suggestion.item.unit %></option>
+          <option value="count(s)">count(s)</option>
+          <option value="lb(s)">lb(s)</option>
+          <option value="ltr(s)">ltr(s)</option>
+        </select>
+      </label>
+      <label>
+        Utility:
+        <input type="range" name="item.utility" min="1" max="10" <%= suggestion.item.utility %>>
+      </label>
+      <label>
+        Comment:
+        <textarea name="comment" ><%= suggestion.comment %></textarea>
+      </label>
+      <% if (isOwner) { %>
+        <div required class="radio-input">
+          <label>Status: </label>
+          <label><input type="radio" class="radio-btn" name="suggestion.status" value="Approved"> Approved </label>
+          <label><input type="radio" class="radio-btn" name="suggestion.status" value="Rejected"> Rejected</label>
+        </div><br>
+      <% } else { %>
+        <label>Status: <input type="text" name="" value="<%= suggestion.status %>" disabled></label>
+      <% } %>
+      <div class="action-btns">
+        <a href="/inventories/<%= inventory._id %>/suggestions"><button type="submit" >Back</button></a>
+        <button type="submit" >Update</button>
+      </div>
+    </form>
+  <% } else { %>
+    <form action="/inventories/<%= inventory._id %>/suggestions" method="GET">
+      <label>
+        Need to:
+        <input type="text" name="suggestion.type" value="<%= suggestion.type %>" disabled>
+      </label>
+      <label>
+        Item Name:
+        <input type="text" name="item.name" value="<%= suggestion.item.name %>" disabled>
+      </label>
+      <label>
+        Brand:
+        <input type="text" name="item.brand" value="<%= suggestion.item.brand %>" disabled>
+      </label>
+      <label>
+        Quantity:
+        <input type="number" name="item.quantity" value="<%= suggestion.item.quantity %>" disabled>
+      </label>
+      <label>
+        Unit:
+        <input type="text" name="item.unit" value="<%= suggestion.item.unit %>" disabled>
+      </label>
+      <label>
+        Utility:
+        <input type="range" name="item.utility" min="1" max="10" <%= suggestion.item.utility %> disabled>
+      </label>
+      <label>
+        Comment:
+        <textarea name="comment" disabled><%= suggestion.comment %></textarea>
+      </label>
+      <label>Status: <input type="text" value="<%= suggestion.status %>" disabled></label>
+      <button type="submit" >Back</button>
+    </form>
+  <% } %>
 </main>
 
 <%- include('../partials/footer') %>

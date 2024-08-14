@@ -46,7 +46,10 @@ nav > a {
   color: #424748;
   font-weight: bold;
 }
-
+nav > a:hover {
+  background-color: #424748;
+  color: white;
+}
 nav > a.active {
   color: white;
   background-color: #424748;
@@ -136,7 +139,7 @@ form * {
   gap: 8px;
 }
 
-select, input {
+select, input, textarea {
   width: 200px;
   text-align: center;
   vertical-align: middle;
@@ -162,6 +165,12 @@ button:hover {
 .remove-button {
   background-color: red;
   color: white;
+}
+
+.action-btns {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
 }
 
 .radio-input {
@@ -201,3 +210,20 @@ tbody>tr:hover {
   display: inline;
 }
 
+section {
+  font-size: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 70%;
+  border: 1px solid;
+}
+
+section>div {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 2px;
+  align-items: center;
+  margin: 0;
+}

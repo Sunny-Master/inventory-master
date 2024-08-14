@@ -15,11 +15,6 @@
         <tr>
           <th>Type</th>
           <th>Item</th>
-          <th>Brand</th>
-          <th>Quantity</th>
-          <th>Unit</th>
-          <th>Utility</th>
-          <th>Comment</th>
           <th>Status</th>
           <th></th>
         </tr>
@@ -29,16 +24,9 @@
           <tr>
             <td><%= suggestion.type %></td>
             <td><%= suggestion.item.name %></td>
-            <td><%= suggestion.item.brand %></td>
-            <td><%= suggestion.item.quantity %></td>
-            <td><%= suggestion.item.unit %></td>
-            <td><%= suggestion.item.utility %></td>
-            <td><%= suggestion.comment %></td>
             <td><%= suggestion.status %></td>
             <td>
-              <% if (suggestion.author.equals(user?._id) || isOwner) { %>
                 <a href="/inventories/<%= inventory._id %>/suggestions/<%= suggestion._id %>">Details</a>
-              <% } %>
             </td>
           </tr>
         <% }) %>

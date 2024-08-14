@@ -298,12 +298,16 @@ async function showSuggestion(req, res) {
   try {
     const inventory = await Inventory.findById(req.params.inventoryId)
     .populate(['items', 'suggestions.author'])
+    const suggestion = await inventory.suggestions.id(req.params.suggestionId)
+    const altSuggestionType = suggestion.type === 'Add' ? 'Remove' : 'Add'
     const isOwner = inventory.owner.equals(req.session.user._id)
     const isManager = inventory.managers.includes(req.session.user._id)
     const isAuthorizedUser = isManager || isOwner
     if (isAuthorizedUser) {
       res.render('inventories/showSuggestion', {
       inventory,
+      suggestion,
+      altSuggestionType,
       isManager,
       isOwner,
       isAuthorizedUser,
