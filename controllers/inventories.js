@@ -37,8 +37,8 @@ async function show(req, res) {
     // make a deep copy of inventory.managers in order to make a single array of all the users of inventory by pushing the inventory.owner to that deepcopy
     const inventoryUsers = JSON.parse(JSON.stringify(inventory.managers))
     inventoryUsers.push(JSON.parse(JSON.stringify(inventory.owner)))
-    const isAuthorizedUser = inventoryUsers.some(user => user._id === req.session.user._id)
-    const isOwner = inventory.owner._id.equals(req.session.user._id)
+    const isAuthorizedUser = inventoryUsers.some(user => user?._id === req.session.user?._id)
+    const isOwner = inventory.owner._id.equals(req.session.user?._id)
     // retrieve and save all the user objects that are not in inventoryUsers array
     const otherUsers = await User.find({_id: {$nin: inventoryUsers}})
     const sortInventory = !!req.query['sort']
@@ -136,7 +136,6 @@ async function editItem(req, res) {
     const inventory = await Inventory.findById(req.params.inventoryId)
     .populate('items')
     const item = inventory.items.id(req.params.itemId)
-    console.log(item)
     if (inventory.managers.includes(req.session.user._id) || inventory.owner.equals(req.session.user._id)) {
       res.render('inventories/editItem', {
       inventory,
@@ -227,6 +226,49 @@ async function removeManager(req, res) {
   }
 }
 
+async function suggestionsIndex(req, res) {
+  try {
+    const inventory = await Inventory.findById(req.params.inventoryId)
+    .populate(['items', 'suggestions'])
+    const isOwner = inventory.owner.equals(req.session.user._id)
+    const isAuthorizedUser = inventory.managers.includes(req.session.user._id) || isOwner
+    if (isAuthorizedUser) {
+      res.render('inventories/suggestions', {
+      inventory,
+      isAuthorizedUser,
+      title: `${inventory.name} Item Suggestions` 
+    })
+    } else {
+      throw new Error(`🚫 Not authorized 🚫`)
+    }
+  } catch (error) {
+    console.log(error)
+    res.redirect(`/inventories/${req.params.inventoryId}`)
+  }
+}
+
+async function addSuggestion(req, res) {
+  const inventory = await Inventory.findById(req.params.inventoryId)
+  const isOwner = inventory.owner.equals(req.session.user._id)
+  const isAuthorizedUser = inventory.managers.includes(req.session.user._id) || isOwner
+  console.log(req.body)
+  for (let key in req.body) {
+    if(req.body[key] === "") delete req.body[key]
+  }
+  try {
+    if (isAuthorizedUser) {
+      inventory.suggestions.push(req.body) 
+      await inventory.save()
+      res.redirect(`/inventories/${inventory._id}`)
+    } else {
+      throw new Error(`🚫 Not authorized 🚫`)
+    }
+  } catch (error) {
+    console.log(error)
+    res.redirect(`/inventories/${inventory._id}`)
+  }
+}
+
 
 export {
   index,
@@ -241,4 +283,6 @@ export {
   deleteItem,
   addManager,
   removeManager,
+  suggestionsIndex,
+  addSuggestion,
 }

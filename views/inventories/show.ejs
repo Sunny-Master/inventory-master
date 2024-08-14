@@ -45,6 +45,9 @@
           <% }) %>
         </tbody>
       </table>
+      <div>
+        <a href="/inventories/<%= inventory._id %>/suggestions"><button>Suggestions</button></a>
+      </div>
       <% if (isOwner) { %>
         <div>
           <a href="/inventories/<%= inventory._id %>/items/new"><button>Add Item</button></a>

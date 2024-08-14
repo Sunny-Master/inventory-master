@@ -2,6 +2,8 @@ import mongoose from "mongoose"
 
 const Schema = mongoose.Schema
 
+
+
 const itemSchema = new Schema({
   name: {
     type: String,
@@ -31,6 +33,23 @@ const itemSchema = new Schema({
   timestamps: true
 })
 
+const suggestionSchema = new Schema({
+  item: itemSchema,
+  type: {
+    type: String,
+    enum: ['Add', 'Remove'],
+  },
+  comment: String,
+  author: {type: Schema.Types.ObjectId, ref: 'User'},
+  status: {
+    type: String,
+    enum: ['Pending', 'Approved', 'Rejected'],
+    default: 'Pending'
+  },
+}, {
+  timestamps: true
+})
+
 const inventorySchema = new Schema({
   name: {
     type: String,
@@ -40,6 +59,7 @@ const inventorySchema = new Schema({
   owner: {type: Schema.Types.ObjectId, ref: 'User'},
   managers: [{type: Schema.Types.ObjectId, ref: 'User'}],
   privateView: Boolean,
+  suggestions: [suggestionSchema]
 }, {
   timestamps: true
 })

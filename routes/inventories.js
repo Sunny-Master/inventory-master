@@ -15,12 +15,13 @@ router.get('/:inventoryId', inventoriesCtrl.show)
 //GET /inventories...
 router.get('/:inventoryId/items/new', isSignedIn, inventoriesCtrl.newItem)
 router.get('/:inventoryId/items/:itemId/edit', isSignedIn, inventoriesCtrl.editItem)
-
+router.get('/:inventoryId/suggestions', isSignedIn, inventoriesCtrl.suggestionsIndex)
 
 //POST /inventories...
 router.post('/', isSignedIn, inventoriesCtrl.create)
 router.post('/:inventoryId/items', isSignedIn, inventoriesCtrl.addItem)
 router.post('/:inventoryId/managers', isSignedIn, inventoriesCtrl.addManager)
+router.post('/:inventoryId/suggestions', isSignedIn, inventoriesCtrl.addSuggestion)
 
 //DELETE /inventories...
 router.delete('/:inventoryId', isSignedIn, inventoriesCtrl.delete)
