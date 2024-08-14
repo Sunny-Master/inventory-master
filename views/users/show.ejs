@@ -14,7 +14,11 @@
       <h3>
         <form action="/inventories/<%= inventory._id %>?_method=DELETE" method="POST">
           <a href="/inventories/<%= inventory._id %>">
-            <%= inventory.name %>
+            <div class="card">
+              <div class="card-body">
+                <h2 class="card-title"><%= inventory.name %> (<%= inventory.privateView ? "Private" : "Public" %>)</h2>                
+              </div>
+            </div>
           </a>
           <button class="remove-button" type="submit">X</button>
         </form>
@@ -26,7 +30,12 @@
     <% selectedUser.managedInventories.forEach(inventory => { %>
       <h3>
         <a href="/inventories/<%= inventory._id %>">
-          <%= inventory.name %>
+          <div class="card">
+            <div class="card-body">
+              <h2 class="card-title"><%= inventory.name %></h2>
+              <p>(<%= inventory.privateView ? "Private" : "Public" %>)</p>
+            </div>
+          </div>
         </a>
       </h3>
     <% }) %>

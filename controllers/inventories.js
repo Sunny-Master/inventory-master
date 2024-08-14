@@ -64,6 +64,8 @@ async function deleteInventory(req, res) {
     const inventory = await Inventory.findById(req.params.inventoryId)
     .populate('managers')
     if (inventory.owner.equals(req.session.user._id)) {
+      // to remove the reference of the inventory being deleted from managers, 
+      // Model.updateMany(filter, update, options(optional)) : filter specifies condition(s) to find documents that needs to be updated, update defines updates to be applied to matched documents
       await User.updateMany(
         {_id: { $in: inventory.managers }},
         { $pull: { managedInventories: inventory._id }}
@@ -72,7 +74,6 @@ async function deleteInventory(req, res) {
       inventoryOwner.ownedInventories.remove(inventory)
       await inventoryOwner.save()
       await inventory.deleteOne()
-
       res.redirect(`/users/${req.session.user._id}`)
     } else {
       throw new Error('🚫 Not authorized 🚫')
