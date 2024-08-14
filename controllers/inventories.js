@@ -229,7 +229,7 @@ async function removeManager(req, res) {
 async function suggestionsIndex(req, res) {
   try {
     const inventory = await Inventory.findById(req.params.inventoryId)
-    .populate(['items', 'suggestions'])
+    .populate(['items', 'suggestions.author'])
     const isOwner = inventory.owner.equals(req.session.user._id)
     const isManager = inventory.managers.includes(req.session.user._id)
     const isAuthorizedUser = isManager || isOwner
@@ -276,6 +276,7 @@ async function addSuggestion(req, res) {
   const isOwner = inventory.owner.equals(req.session.user._id)
   const isManager = inventory.managers.includes(req.session.user._id)
   const isAuthorizedUser = isManager || isOwner
+  req.body.author = req.session.user._id
   for (let key in req.body) {
     if(req.body[key] === "") delete req.body[key]
   }
@@ -293,6 +294,29 @@ async function addSuggestion(req, res) {
   }
 }
 
+async function showSuggestion(req, res) {
+  try {
+    const inventory = await Inventory.findById(req.params.inventoryId)
+    .populate(['items', 'suggestions.author'])
+    const isOwner = inventory.owner.equals(req.session.user._id)
+    const isManager = inventory.managers.includes(req.session.user._id)
+    const isAuthorizedUser = isManager || isOwner
+    if (isAuthorizedUser) {
+      res.render('inventories/showSuggestion', {
+      inventory,
+      isManager,
+      isOwner,
+      isAuthorizedUser,
+      title: `${inventory.name} Item Suggestion` 
+    })
+    } else {
+      throw new Error(`🚫 Not authorized 🚫`)
+    }
+  } catch (error) {
+    console.log(error)
+    res.redirect(`/inventories/${req.params.inventoryId}`)
+  }
+}
 
 export {
   index,
@@ -310,4 +334,5 @@ export {
   suggestionsIndex,
   newSuggestion,
   addSuggestion,
+  showSuggestion,
 }

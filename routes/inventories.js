@@ -17,6 +17,7 @@ router.get('/:inventoryId/items/new', isSignedIn, inventoriesCtrl.newItem)
 router.get('/:inventoryId/items/:itemId/edit', isSignedIn, inventoriesCtrl.editItem)
 router.get('/:inventoryId/suggestions', isSignedIn, inventoriesCtrl.suggestionsIndex)
 router.get('/:inventoryId/suggestions/new', isSignedIn, inventoriesCtrl.newSuggestion)
+router.get('/:inventoryId/suggestions/:suggestionId', isSignedIn, inventoriesCtrl.showSuggestion)
 
 //POST /inventories...
 router.post('/', isSignedIn, inventoriesCtrl.create)
