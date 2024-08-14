@@ -231,10 +231,13 @@ async function suggestionsIndex(req, res) {
     const inventory = await Inventory.findById(req.params.inventoryId)
     .populate(['items', 'suggestions'])
     const isOwner = inventory.owner.equals(req.session.user._id)
-    const isAuthorizedUser = inventory.managers.includes(req.session.user._id) || isOwner
+    const isManager = inventory.managers.includes(req.session.user._id)
+    const isAuthorizedUser = isManager || isOwner
     if (isAuthorizedUser) {
       res.render('inventories/suggestions', {
       inventory,
+      isManager,
+      isOwner,
       isAuthorizedUser,
       title: `${inventory.name} Item Suggestions` 
     })
@@ -247,11 +250,32 @@ async function suggestionsIndex(req, res) {
   }
 }
 
+async function newSuggestion(req, res) {
+  try {
+    const inventory = await Inventory.findById(req.params.inventoryId)
+    const isOwner = inventory.owner.equals(req.session.user._id)
+    const isManager = inventory.managers.includes(req.session.user._id)
+    const isAuthorizedUser = isManager || isOwner
+    if (isAuthorizedUser) {
+      res.render('inventories/newSuggestion', {
+        inventory,
+        isManager,
+        isOwner,
+        isAuthorizedUser,
+        title: `Add Suggestion for the ${inventory.name} Item` 
+      })
+    }
+  } catch (error) {
+    console.log(error)
+    res.redirect(`/inventories/${req.params.inventoryId}`)
+  }
+}
+
 async function addSuggestion(req, res) {
   const inventory = await Inventory.findById(req.params.inventoryId)
   const isOwner = inventory.owner.equals(req.session.user._id)
-  const isAuthorizedUser = inventory.managers.includes(req.session.user._id) || isOwner
-  console.log(req.body)
+  const isManager = inventory.managers.includes(req.session.user._id)
+  const isAuthorizedUser = isManager || isOwner
   for (let key in req.body) {
     if(req.body[key] === "") delete req.body[key]
   }
@@ -259,7 +283,7 @@ async function addSuggestion(req, res) {
     if (isAuthorizedUser) {
       inventory.suggestions.push(req.body) 
       await inventory.save()
-      res.redirect(`/inventories/${inventory._id}`)
+      res.redirect(`/inventories/${inventory._id}/suggestions`)
     } else {
       throw new Error(`🚫 Not authorized 🚫`)
     }
@@ -284,5 +308,6 @@ export {
   addManager,
   removeManager,
   suggestionsIndex,
+  newSuggestion,
   addSuggestion,
 }

@@ -1,0 +1,46 @@
+<%- include('../partials/html-head') %>
+<%- include('../partials/nav') %>
+
+<main>
+  <h1><%= title %></h1>
+  <% if (isManager) { %>
+    <form action="/inventories/<%= inventory._id %>/suggestions" method="post">
+      <div class="radio-input">
+        <label><input type="radio" class="radio-btn" name="type" value="Add" checked> Add</label>
+        <label><input type="radio" class="radio-btn" name="type" value="Remove"> Remove</label>
+      </div>
+      <label>
+        Item Name:
+        <input type="text" name="item.name" placeholder="Add Item Name">
+      </label>
+      <label>
+        Brand:
+        <input type="text" name="item.brand" placeholder="Brand Name">
+      </label>
+      <label>
+        Quantity:
+        <input type="number" name="item.quantity" placeholder="Numerical Qty">
+      </label>
+      <label>
+        Unit:
+        <select name="item.unit" >
+          <option disabled selected value="count(s)">Select Qty unit</option>
+          <option value="count(s)">count(s)</option>
+          <option value="lb(s)">lb(s)</option>
+          <option value="ltr(s)">ltr(s)</option>
+        </select>
+      </label>
+      <label>
+        Utility:
+        <input type="range" name="item.utility" min="1" max="10" value="3">
+      </label>
+      <label>
+        Comment:
+        <textarea name="comment"></textarea>
+      </label>
+      <button type="submit">Add</button>
+    </form>
+  <% } %>
+</main>
+
+<%- include('../partials/footer') %>
