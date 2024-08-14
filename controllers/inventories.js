@@ -62,11 +62,17 @@ async function deleteInventory(req, res) {
   try {
     // find inventory by id 
     const inventory = await Inventory.findById(req.params.inventoryId)
+    .populate('managers')
     if (inventory.owner.equals(req.session.user._id)) {
+      await User.updateMany(
+        {_id: { $in: inventory.managers }},
+        { $pull: { managedInventories: inventory._id }}
+      )
       const inventoryOwner = await User.findById(req.session.user._id)
       inventoryOwner.ownedInventories.remove(inventory)
       await inventoryOwner.save()
       await inventory.deleteOne()
+
       res.redirect(`/users/${req.session.user._id}`)
     } else {
       throw new Error('🚫 Not authorized 🚫')
