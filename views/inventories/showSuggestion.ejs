@@ -43,51 +43,47 @@
     </form>
     <a href="/inventories/<%= inventory._id %>/suggestions"><button>Back</button></a>
   <% } else { %>
-    <form>
-      <label>
-        Need to:
-        <input type="text" name="suggestion.type" value="<%= suggestion.type %>" disabled>
-      </label>
-      <label>
-        Item Name:
-        <input type="text" name="item.name" value="<%= suggestion.item.name %>" disabled>
-      </label>
-      <label>
-        Brand:
-        <input type="text" name="item.brand" value="<%= suggestion.item.brand %>" disabled>
-      </label>
-      <label>
-        Quantity:
-        <input type="number" name="item.quantity" value="<%= suggestion.item.quantity %>" disabled>
-      </label>
-      <label>
-        Unit:
-        <input type="text" name="item.unit" value="<%= suggestion.item.unit %>" disabled>
-      </label>
-      <label>
-        Utility:
-        <input type="range" name="item.utility" min="1" max="10" <%= suggestion.item.utility %> disabled>
-      </label>
-      <label>
-        Comment:
-        <textarea name="comment" disabled><%= suggestion.comment %></textarea>
-      </label>
-      <% if (isOwner) { %>
-        <form action="/inventories/<%= inventory._id %>/suggestions/<%= suggestion._id %>/statusUpdate?_method=PATCH" method="post">
-          <div required class="radio-input">
-            <label>Status: </label>
-            <label><input type="radio" class="radio-btn" name="suggestion.status" value="Approved"> Approved </label>
-            <label><input type="radio" class="radio-btn" name="suggestion.status" value="Rejected"> Rejected</label>
-          </div>
-          <button type="submit">Submit</button>
-        </form>
-      <% } else { %>         
-        <label>Status: <input type="text" value="<%= suggestion.status %>" disabled></label>
-        <button>Back</button>
-      <% } %>
-    </form>
+    <label>
+      Need to:
+      <input type="text" name="suggestion.type" value="<%= suggestion.type %>" disabled>
+    </label>
+    <label>
+      Item Name:
+      <input type="text" name="item.name" value="<%= suggestion.item.name %>" disabled>
+    </label>
+    <label>
+      Brand:
+      <input type="text" name="item.brand" value="<%= suggestion.item.brand %>" disabled>
+    </label>
+    <label>
+      Quantity:
+      <input type="number" name="item.quantity" value="<%= suggestion.item.quantity %>" disabled>
+    </label>
+    <label>
+      Unit:
+      <input type="text" name="item.unit" value="<%= suggestion.item.unit %>" disabled>
+    </label>
+    <label>
+      Utility:
+      <input type="range" name="item.utility" min="1" max="10" <%= suggestion.item.utility %> disabled>
+    </label>
+    <label>
+      Comment:
+      <textarea name="comment" disabled><%= suggestion.comment %></textarea>
+    </label>
+    <% if (isOwner) { %>
+      <form action="/inventories/<%= inventory._id %>/suggestions/<%= suggestion._id %>/status?_method=PATCH" method="POST">
+        <div required class="radio-input">
+          <label>Status: </label>
+          <label><input type="radio" class="radio-btn" name="status" value="Approved"> Approved </label>
+          <label><input type="radio" class="radio-btn" name="status" value="Rejected"> Rejected</label>
+        </div>
+        <button type="submit">Submit</button>
+      </form>
+    <% } else { %>         
+      <label>Status: <input type="text" value="<%= suggestion.status %>" disabled></label>
+    <% } %>
     <a href="/inventories/<%= inventory._id %>/suggestions"><button>Back</button></a>
-    
   <% } %>
 </main>
 

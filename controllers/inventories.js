@@ -340,6 +340,24 @@ async function updateSuggestion(req, res) {
   }
 }
 
+async function updateSuggestionStatus(req, res) {
+  const inventory = await Inventory.findById(req.params.inventoryId)
+  const suggestion = inventory.suggestions.id(req.params.suggestionId)
+  const isOwner = inventory.owner.equals(req.session.user._id)
+  try {
+    if (isOwner) {
+      suggestion.status = req.body.status
+      await inventory.save()
+      res.redirect(`/inventories/${inventory._id}/suggestions`)
+    } else {
+      throw new Error(`🚫 Not authorized 🚫`)
+    }
+  } catch (error) {
+    console.log(error)
+    res.redirect(`/inventories/${req.params.inventoryId}`)
+  }
+}
+
 export {
   index,
   create,
@@ -358,4 +376,5 @@ export {
   addSuggestion,
   showSuggestion,
   updateSuggestion,
+  updateSuggestionStatus,
 }

@@ -36,5 +36,6 @@ router.put('/:inventoryId/suggestions/:suggestionId/update', isSignedIn, invento
 
 //PATCH /inventories/:inventoryId
 router.patch('/:inventoryId/toggle-view', isSignedIn, inventoriesCtrl.toggleView)
+router.patch('/:inventoryId/suggestions/:suggestionId/status', isSignedIn, inventoriesCtrl.updateSuggestionStatus)
 
 export { router }
