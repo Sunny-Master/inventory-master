@@ -8,9 +8,9 @@
       <a class="text-decoration-none" href="/inventories/<%= inventory._id %>">
         <div class="card">
           <div class="card-body">
-            <h2 class="card-title"><%= inventory.name %></h2>
+            <h2 class="card-data"><%= inventory.name %></h2>
             <p>owned by</p>
-            <h3><%= inventory.owner.username %></h3>
+            <h3 class="card-data"><%= inventory.owner.username %></h3>
           </div>
         </div>
       </a>
