@@ -16,6 +16,7 @@
           <th>Type</th>
           <th>Item</th>
           <th>Status</th>
+          <th>Suggested By</th>
           <th></th>
         </tr>
       </thead>
@@ -25,9 +26,10 @@
             <td><%= suggestion.type %></td>
             <td><%= suggestion.item.name %></td>
             <td><%= suggestion.status %></td>
+            <th><%= suggestion.author.username %></th>
             <td>
                 <a href="/inventories/<%= inventory._id %>/suggestions/<%= suggestion._id %>">Details</a>
-                <% if (suggestion.author.equals(user?._id)) { %>
+                <% if (suggestion.author.equals(user?._id) || isOwner) { %>
                   <form class="inline" action="/inventories/<%= inventory._id %>/suggestions/<%= suggestion._id %>?_method=DELETE" method="POST">
                     <button class="remove-btn" type="submit">X</button>
                   </form>

@@ -5,6 +5,15 @@
   <h1><%= title %></h1>
   <% if (suggestion.author.equals(user?._id)) { %>
     <form action="/inventories/<%= inventory._id %>/suggestions/<%= suggestion._id %>/update?_method=PUT" method="post">
+      <label>
+        Suggested By: 
+        <input 
+        type="text" 
+        name="author" 
+        disabled 
+        value="You"
+        >
+      </label>
       <div class="radio-input">
         <label><input type="radio" class="radio-btn" name="type" value="<%= suggestion.type %>" checked> <%= suggestion.type %></label>
         <label><input type="radio" class="radio-btn" name="type" value="<%= altSuggestionType %>"> <%= altSuggestionType %></label>
@@ -43,6 +52,15 @@
     </form>
     <a href="/inventories/<%= inventory._id %>/suggestions"><button>Back</button></a>
   <% } else { %>
+    <label>
+      Suggested By: 
+      <input 
+      type="text" 
+      name="author" 
+      disabled 
+      value="<%= suggestion.author.username %>"
+      >
+    </label>
     <label>
       Need to:
       <input type="text" name="suggestion.type" value="<%= suggestion.type %>" disabled>
