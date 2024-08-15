@@ -27,6 +27,11 @@
             <td><%= suggestion.status %></td>
             <td>
                 <a href="/inventories/<%= inventory._id %>/suggestions/<%= suggestion._id %>">Details</a>
+                <% if (suggestion.author.equals(user?._id)) { %>
+                  <form class="inline" action="/inventories/<%= inventory._id %>/suggestions/<%= suggestion._id %>?_method=DELETE" method="POST">
+                    <button class="remove-btn" type="submit">X</button>
+                  </form>
+                <% } %>
             </td>
           </tr>
         <% }) %>

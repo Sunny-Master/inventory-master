@@ -358,6 +358,25 @@ async function updateSuggestionStatus(req, res) {
   }
 }
 
+async function deleteSuggestion(req, res) {
+  try {
+    const inventory = await Inventory.findById(req.params.inventoryId)
+    const suggestion = inventory.suggestions.id(req.params.suggestionId)
+    const isOwner = inventory.owner.equals(req.session.user._id)
+    const isAuthor = suggestion.author.equals(req.session.user._id)
+    if (isAuthor || isOwner) {
+      inventory.suggestions.remove({_id: req.params.suggestionId})
+      await inventory.save()
+      res.redirect(`/inventories/${inventory._id}/suggestions`)
+    } else {
+      throw new Error(`🚫 Not authorized 🚫`)
+    }
+  } catch (error) {
+    console.log(error)
+    res.redirect(`/inventories/${req.params.inventoryId}`)
+  }
+}
+
 export {
   index,
   create,
@@ -377,4 +396,5 @@ export {
   showSuggestion,
   updateSuggestion,
   updateSuggestionStatus,
+  deleteSuggestion
 }

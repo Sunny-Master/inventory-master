@@ -29,6 +29,7 @@ router.post('/:inventoryId/suggestions', isSignedIn, inventoriesCtrl.addSuggesti
 router.delete('/:inventoryId', isSignedIn, inventoriesCtrl.delete)
 router.delete('/:inventoryId/managers/:managerId', isSignedIn, inventoriesCtrl.removeManager)
 router.delete('/:inventoryId/items/:itemId', isSignedIn, inventoriesCtrl.deleteItem)
+router.delete('/:inventoryId/suggestions/:suggestionId', isSignedIn, inventoriesCtrl.deleteSuggestion)
 
 //PUT /inventories/:inventoryId/items/:itemId
 router.put('/:inventoryId/items/:itemId', isSignedIn, inventoriesCtrl.updateItem)
