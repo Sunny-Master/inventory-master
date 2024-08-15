@@ -3,7 +3,7 @@
 
 <main>
   <h1><%= title %></h1>
-  <% if (suggestion.author.equals(user?._id)) { %>
+  <% if (suggestion.author.equals(user?._id) && !isStatusUpdated) { %>
     <form action="/inventories/<%= inventory._id %>/suggestions/<%= suggestion._id %>/update?_method=PUT" method="post">
       <label>
         Suggested By: 
@@ -89,7 +89,7 @@
       Comment:
       <textarea name="comment" disabled><%= suggestion.comment %></textarea>
     </label>
-    <% if (isOwner) { %>
+    <% if (isOwner && !isStatusUpdated) { %>
       <form action="/inventories/<%= inventory._id %>/suggestions/<%= suggestion._id %>/status?_method=PATCH" method="POST">
         <div required class="radio-input">
           <label>Status: </label>

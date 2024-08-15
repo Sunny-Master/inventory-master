@@ -299,6 +299,7 @@ async function showSuggestion(req, res) {
     const inventory = await Inventory.findById(req.params.inventoryId)
     .populate(['items', 'suggestions.author'])
     const suggestion = inventory.suggestions.id(req.params.suggestionId)
+    const isStatusUpdated = suggestion.status !== 'Pending'
     const altSuggestionType = suggestion.type === 'Add' ? 'Remove' : 'Add'
     const isOwner = inventory.owner.equals(req.session.user._id)
     const isManager = inventory.managers.includes(req.session.user._id)
@@ -307,6 +308,7 @@ async function showSuggestion(req, res) {
       res.render('inventories/showSuggestion', {
       inventory,
       suggestion,
+      isStatusUpdated,
       altSuggestionType,
       isManager,
       isOwner,
