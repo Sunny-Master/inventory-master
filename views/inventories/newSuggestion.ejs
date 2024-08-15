@@ -5,13 +5,14 @@
   <h1><%= title %></h1>
   <% if (isManager) { %>
     <form action="/inventories/<%= inventory._id %>/suggestions" method="post">
-      <div class="radio-input">
-        <label><input type="radio" class="radio-btn" name="type" value="Add" checked> Add</label>
-        <label><input type="radio" class="radio-btn" name="type" value="Remove"> Remove</label>
-      </div>
+      <label>
+        Need to:
+        <input type="text" name="" value="Add" disabled>
+      </label>
+      <input type="hidden" name="type" value="Add">
       <label>
         Item Name:
-        <input type="text" name="item.name" placeholder="Add Item Name">
+        <input type="text" name="item.name" placeholder="Add Item Name" required>
       </label>
       <label>
         Brand:
@@ -24,7 +25,7 @@
       <label>
         Unit:
         <select name="item.unit" >
-          <option disabled selected value="count(s)">Select Qty unit</option>
+          <option selected value="count(s)">Select Qty unit</option>
           <option value="count(s)">count(s)</option>
           <option value="lb(s)">lb(s)</option>
           <option value="ltr(s)">ltr(s)</option>

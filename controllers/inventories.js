@@ -172,7 +172,7 @@ async function deleteItem(req, res) {
   try {
     const inventory = await Inventory.findById(req.params.inventoryId)
     if (inventory.owner.equals(req.session.user._id)) {
-      inventory.items.remove({_id: req.params.itemId})
+      inventory.items.pull({_id: req.params.itemId})
       await inventory.save()
       res.redirect(`/inventories/${inventory._id}`)
     } else {
@@ -253,15 +253,11 @@ async function suggestionsIndex(req, res) {
 async function newSuggestion(req, res) {
   try {
     const inventory = await Inventory.findById(req.params.inventoryId)
-    const isOwner = inventory.owner.equals(req.session.user._id)
     const isManager = inventory.managers.includes(req.session.user._id)
-    const isAuthorizedUser = isManager || isOwner
-    if (isAuthorizedUser) {
+    if (isManager) {
       res.render('inventories/newSuggestion', {
         inventory,
         isManager,
-        isOwner,
-        isAuthorizedUser,
         title: `Add Suggestion for the ${inventory.name} Item` 
       })
     }
@@ -272,17 +268,18 @@ async function newSuggestion(req, res) {
 }
 
 async function addSuggestion(req, res) {
-  const inventory = await Inventory.findById(req.params.inventoryId)
-  const isOwner = inventory.owner.equals(req.session.user._id)
+  const inventory = await Inventory.findById(req.params.inventoryId).populate('items')
   const isManager = inventory.managers.includes(req.session.user._id)
-  const isAuthorizedUser = isManager || isOwner
   req.body.author = req.session.user._id
   for (let key in req.body) {
     if(req.body[key] === "") delete req.body[key]
   }
   try {
-    if (isAuthorizedUser) {
-      inventory.suggestions.push(req.body) 
+    if (isManager) {
+      if (req.body.type === 'Remove') {
+        req.body.item = inventory.items.id(req.body.itemId)
+      } 
+      inventory.suggestions.push(req.body)
       await inventory.save()
       res.redirect(`/inventories/${inventory._id}/suggestions`)
     } else {
@@ -300,19 +297,17 @@ async function showSuggestion(req, res) {
     .populate(['items', 'suggestions.author'])
     const suggestion = inventory.suggestions.id(req.params.suggestionId)
     const isStatusUpdated = suggestion.status !== 'Pending'
-    const altSuggestionType = suggestion.type === 'Add' ? 'Remove' : 'Add'
     const isOwner = inventory.owner.equals(req.session.user._id)
     const isManager = inventory.managers.includes(req.session.user._id)
-    const isAuthorizedUser = isManager || isOwner
-    if (isAuthorizedUser) {
+    const isAuthor = suggestion.author.equals(req.session.user._id)
+    const isSuggestionEditable = isAuthor && !isStatusUpdated && suggestion.type === 'Add'
+    if (isManager || isOwner) {
       res.render('inventories/showSuggestion', {
       inventory,
       suggestion,
-      isStatusUpdated,
-      altSuggestionType,
-      isManager,
+      isSuggestionEditable,
       isOwner,
-      isAuthorizedUser,
+      isStatusUpdated,
       title: `${inventory.name} Item Suggestion` 
     })
     } else {
@@ -349,14 +344,9 @@ async function updateSuggestionStatus(req, res) {
   try {
     if (isOwner) {
       suggestion.status = req.body.status
-      console.log(suggestion.item)
       if (suggestion.status === 'Approved') {
-        if (suggestion.type === 'Add') {
-          inventory.items.push(suggestion.item) 
-        } else {
-          inventory.items.remove({_id: suggestion.item._id})
+        suggestion.type === 'Add' ? inventory.items.push(suggestion.item) : inventory.items.remove({_id: suggestion.item._id})
         }
-      }
       await inventory.save()
       res.redirect(`/inventories/${inventory._id}/suggestions`)
     } else {

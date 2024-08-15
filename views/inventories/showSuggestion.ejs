@@ -3,7 +3,7 @@
 
 <main>
   <h1><%= title %></h1>
-  <% if (suggestion.author.equals(user?._id) && !isStatusUpdated) { %>
+  <% if (isSuggestionEditable) { %>
     <form action="/inventories/<%= inventory._id %>/suggestions/<%= suggestion._id %>/update?_method=PUT" method="post">
       <label>
         Suggested By: 
@@ -14,10 +14,10 @@
         value="You"
         >
       </label>
-      <div class="radio-input">
-        <label><input type="radio" class="radio-btn" name="type" value="<%= suggestion.type %>" checked> <%= suggestion.type %></label>
-        <label><input type="radio" class="radio-btn" name="type" value="<%= altSuggestionType %>"> <%= altSuggestionType %></label>
-      </div>
+      <label>
+        Need to:
+        <input type="text" name="suggestion.type" value="<%= suggestion.type %>" disabled>
+      </label>
       <label>
         Item Name:
         <input type="text" name="item.name" value="<%= suggestion.item.name %>">
@@ -41,7 +41,7 @@
       </label>
       <label>
         Utility:
-        <input type="range" name="item.utility" min="1" max="10" <%= suggestion.item.utility %>>
+        <input type="range" name="item.utility" min="1" max="10" value="<%= suggestion.item.utility %>">
       </label>
       <label>
         Comment:

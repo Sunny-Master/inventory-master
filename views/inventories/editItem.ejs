@@ -44,6 +44,18 @@
       <button type="submit">Update</button>
     </form>
   <% } %>
+  <% if (inventory.managers.includes(user?._id)) { %>
+    <h2>Suggest Removal of Item from Inventory</h2>
+    <form action="/inventories/<%= inventory._id %>/suggestions" method="post">
+      <input type="hidden" name="type" value="Remove">
+      <input type="hidden" name="itemId" value="<%= item._id %>">
+      <label>
+        Comment:
+        <textarea name="comment" placeholder="Add comments for item removal"></textarea>
+      </label>
+      <button type="submit">Send Suggestion</button>
+    </form>
+  <% } %>
   <a href="/inventories/<%= inventory._id %>"><button>Back</button></a>
 </main>
 
