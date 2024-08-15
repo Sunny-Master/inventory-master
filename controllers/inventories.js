@@ -349,6 +349,14 @@ async function updateSuggestionStatus(req, res) {
   try {
     if (isOwner) {
       suggestion.status = req.body.status
+      console.log(suggestion.item)
+      if (suggestion.status === 'Approved') {
+        if (suggestion.type === 'Add') {
+          inventory.items.push(suggestion.item) 
+        } else {
+          inventory.items.remove({_id: suggestion.item._id})
+        }
+      }
       await inventory.save()
       res.redirect(`/inventories/${inventory._id}/suggestions`)
     } else {
