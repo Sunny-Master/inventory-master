@@ -32,6 +32,7 @@ router.delete('/:inventoryId/items/:itemId', isSignedIn, inventoriesCtrl.deleteI
 
 //PUT /inventories/:inventoryId/items/:itemId
 router.put('/:inventoryId/items/:itemId', isSignedIn, inventoriesCtrl.updateItem)
+router.put('/:inventoryId/suggestions/:suggestionId/update', isSignedIn, inventoriesCtrl.updateSuggestion)
 
 //PATCH /inventories/:inventoryId
 router.patch('/:inventoryId/toggle-view', isSignedIn, inventoriesCtrl.toggleView)

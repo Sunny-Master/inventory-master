@@ -3,8 +3,8 @@
 
 <main>
   <h1><%= title %></h1>
-  <% if (suggestion.author.equals(user?._id) || isOwner) { %>
-    <form action="/inventories/<%= inventory._id %>/suggestions" method="post">
+  <% if (suggestion.author.equals(user?._id)) { %>
+    <form action="/inventories/<%= inventory._id %>/suggestions/<%= suggestion._id %>/update?_method=PUT" method="post">
       <div class="radio-input">
         <label><input type="radio" class="radio-btn" name="type" value="<%= suggestion.type %>" checked> <%= suggestion.type %></label>
         <label><input type="radio" class="radio-btn" name="type" value="<%= altSuggestionType %>"> <%= altSuggestionType %></label>
@@ -38,22 +38,12 @@
         Comment:
         <textarea name="comment" ><%= suggestion.comment %></textarea>
       </label>
-      <% if (isOwner) { %>
-        <div required class="radio-input">
-          <label>Status: </label>
-          <label><input type="radio" class="radio-btn" name="suggestion.status" value="Approved"> Approved </label>
-          <label><input type="radio" class="radio-btn" name="suggestion.status" value="Rejected"> Rejected</label>
-        </div><br>
-      <% } else { %>
-        <label>Status: <input type="text" name="" value="<%= suggestion.status %>" disabled></label>
-      <% } %>
-      <div class="action-btns">
-        <a href="/inventories/<%= inventory._id %>/suggestions"><button type="submit" >Back</button></a>
-        <button type="submit" >Update</button>
-      </div>
+      <label>Status: <input type="text" name="" value="<%= suggestion.status %>" disabled></label>        
+      <button type="submit" >Update</button>
     </form>
+    <a href="/inventories/<%= inventory._id %>/suggestions"><button>Back</button></a>
   <% } else { %>
-    <form action="/inventories/<%= inventory._id %>/suggestions" method="GET">
+    <form>
       <label>
         Need to:
         <input type="text" name="suggestion.type" value="<%= suggestion.type %>" disabled>
@@ -82,9 +72,22 @@
         Comment:
         <textarea name="comment" disabled><%= suggestion.comment %></textarea>
       </label>
-      <label>Status: <input type="text" value="<%= suggestion.status %>" disabled></label>
-      <button type="submit" >Back</button>
+      <% if (isOwner) { %>
+        <form action="/inventories/<%= inventory._id %>/suggestions/<%= suggestion._id %>/statusUpdate?_method=PATCH" method="post">
+          <div required class="radio-input">
+            <label>Status: </label>
+            <label><input type="radio" class="radio-btn" name="suggestion.status" value="Approved"> Approved </label>
+            <label><input type="radio" class="radio-btn" name="suggestion.status" value="Rejected"> Rejected</label>
+          </div>
+          <button type="submit">Submit</button>
+        </form>
+      <% } else { %>         
+        <label>Status: <input type="text" value="<%= suggestion.status %>" disabled></label>
+        <button>Back</button>
+      <% } %>
     </form>
+    <a href="/inventories/<%= inventory._id %>/suggestions"><button>Back</button></a>
+    
   <% } %>
 </main>
 

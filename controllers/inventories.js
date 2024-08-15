@@ -298,7 +298,7 @@ async function showSuggestion(req, res) {
   try {
     const inventory = await Inventory.findById(req.params.inventoryId)
     .populate(['items', 'suggestions.author'])
-    const suggestion = await inventory.suggestions.id(req.params.suggestionId)
+    const suggestion = inventory.suggestions.id(req.params.suggestionId)
     const altSuggestionType = suggestion.type === 'Add' ? 'Remove' : 'Add'
     const isOwner = inventory.owner.equals(req.session.user._id)
     const isManager = inventory.managers.includes(req.session.user._id)
@@ -313,6 +313,24 @@ async function showSuggestion(req, res) {
       isAuthorizedUser,
       title: `${inventory.name} Item Suggestion` 
     })
+    } else {
+      throw new Error(`🚫 Not authorized 🚫`)
+    }
+  } catch (error) {
+    console.log(error)
+    res.redirect(`/inventories/${req.params.inventoryId}`)
+  }
+}
+
+async function updateSuggestion(req, res) {
+  const inventory = await Inventory.findById(req.params.inventoryId)
+  const suggestion = inventory.suggestions.id(req.params.suggestionId)
+  const isAuthor = suggestion.author.equals(req.session.user._id)
+  try {
+    if (isAuthor) {
+      suggestion.set(req.body)
+      await inventory.save()
+      res.redirect(`/inventories/${inventory._id}/suggestions`)
     } else {
       throw new Error(`🚫 Not authorized 🚫`)
     }
@@ -339,4 +357,5 @@ export {
   newSuggestion,
   addSuggestion,
   showSuggestion,
+  updateSuggestion,
 }
