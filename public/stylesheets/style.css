@@ -86,15 +86,12 @@ main {
     background-size: cover;
     background-position: center;
   }
-}
-
-@media (max-width: 400px) {
   nav {
     justify-content: space-evenly;
   }
   nav > a {
     margin: 0.1rem;
-    padding: 0.2rem;
+    padding: 0.4rem;
   }
   #home-button {
     margin: 0;
@@ -103,6 +100,13 @@ main {
 }
 
 main.bg-blur {
+  background: url(https://i.imgur.com/sED2qto.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+main.bg-blurr-dark {
   background: url(https://i.imgur.com/YhfKwtj.png);
   background-size: cover;
   background-repeat: no-repeat;
@@ -111,12 +115,17 @@ main.bg-blur {
 
 main>section {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: rgba(0, 0, 0, 0.9);
+  background-color: rgba(0, 0, 0, 0.8);
   color: azure;
   padding: 0.5rem 3rem 3rem 3rem;
   max-width: fit-content;
+}
+
+section.inventories {
+  padding: 0.5rem 0 2rem 0;
 }
 
 .card-container {
@@ -125,7 +134,7 @@ main>section {
   flex-wrap: wrap;
   gap: 1.5rem;
   margin: 1.5rem;
-  max-width: 1600px;
+  max-width: fit-content;
 }
 
 .text-decoration-none {
@@ -141,7 +150,7 @@ main>section {
   color: #424748;
   padding: 0.5rem;
   justify-content: center;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.85), 0 6px 20px 0 rgba(0, 0, 0, 0.85);
 }
 
 .card:hover {
@@ -256,20 +265,11 @@ tbody>tr:hover {
   display: inline;
 }
 
-section {
-  font-size: 1.5rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  width: 70%;
-  border: 1px solid;
-}
-
-section>div {
+/* div {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   gap: 2px;
   align-items: center;
   margin: 0;
-}
+} */

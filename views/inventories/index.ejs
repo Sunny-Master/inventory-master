@@ -1,21 +1,23 @@
 <%- include('../partials/html-head') %>
 <%- include('../partials/nav') %>
 
-<main>
-  <h1><%= title %></h1>
-  <div class="card-container">
-    <% inventoriesToShow.forEach(inventory => { %>
-      <a class="text-decoration-none" href="/inventories/<%= inventory._id %>">
-        <div class="card">
-          <div class="card-body">
-            <h2 class="card-data"><%= inventory.name %></h2>
-            <p>owned by</p>
-            <h3 class="card-data"><%= inventory.owner.username %></h3>
+<main class="bg-blurr-dark">
+  <section class="inventories">
+    <h1><%= title %></h1>
+    <div class="card-container">
+      <% inventoriesToShow.forEach(inventory => { %>
+        <a class="text-decoration-none" href="/inventories/<%= inventory._id %>">
+          <div class="card">
+            <div class="card-body">
+              <h2 class="card-data"><%= inventory.name %></h2>
+              <p>owned by</p>
+              <h3 class="card-data"><%= inventory.owner.username %></h3>
+            </div>
           </div>
-        </div>
-      </a>
-    <% }) %>
-  </div>
+        </a>
+      <% }) %>
+    </div>
+  </section>
 </main>
 
 <%- include('../partials/footer') %>
