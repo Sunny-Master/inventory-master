@@ -109,7 +109,7 @@ main>section {
 }
 
 section.inventories {
-  background: none;
+  background: rgba(0, 0, 0, 0.5);
 }
 
 section.inventory {
@@ -266,7 +266,7 @@ button {
   font-size: 1.2rem;
   font-weight: bold;
   cursor: pointer;
-  color: #424748;
+  color: black;
 }
 
 button:hover {
@@ -279,9 +279,15 @@ button:hover {
   color: azure;
 }
 
-.edit-button:hover {
+.edit-button:hover, .add-button:hover {
   background-color: azure;
   color: #424748;
+}
+
+.add-button {
+  background: none;
+  color: azure;
+  padding: 0.3rem;
 }
 
 .remove-button {
@@ -335,19 +341,24 @@ td {
   min-width: fit-content;
 }
 
-#managers {
-  margin: 0 0 1rem 0;
+.manager-card-holder {
+  max-width: 19rem;
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
-#managers td {
-  text-align: left;
+.manager-card {
+  flex-direction: row;
+  gap: 1rem;
   font-size: 1.2rem;
+  background-color: rgba(0, 0, 0, 0.5);
 }
+
+
 
 .radio-input {
- display: flex;
- flex-direction: column;
- align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
 .radio-btn {

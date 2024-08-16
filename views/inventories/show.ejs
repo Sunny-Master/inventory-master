@@ -56,7 +56,11 @@
         </div>
       <% } else { %>
         <div class="action-btns">
-          <a href="/inventories/<%= inventory._id %>/items/new"><button>Add Item</button></a>
+          <a href="/inventories/<%= inventory._id %>/items/new">
+            <button class="add-object">
+              Add Item
+            </button>
+          </a>
           <div>
             <form action="/inventories/<%= inventory._id %>/toggle-view?_method=PATCH" method="POST">
               <button type="submit">Make it <%= alterView %></button>
@@ -68,32 +72,34 @@
           <i class="fa-solid fa-people-roof fa-2x"></i>
           Managers
         </h2>
-        <table id="managers">
-          <tbody>
-            <% inventory.managers.forEach(manager => { %>
-              <tr>
-                <td>
-                  <i class="fa-solid fa-user-tie"></i>
-                  <%= manager.username %>
-                </td>
-                <td>
-                  <form action="/inventories/<%= inventory._id %>/managers/<%= manager._id %>?_method=DELETE" method="POST">
-                    <button class="remove-button" type="submit">
-                      <i class="fa-solid fa-user-xmark "></i>
-                    </button>
-                  </form>
-                </td>
-              </tr>
-            <% }) %>
-          </tbody>
-        </table>
+        <div class="card-container">
+          <% inventory.managers.forEach(manager => { %>
+            <div class="card card-holder manager-card-holder">
+              <div class="card-body">
+                <div class="card">
+                  <div class="card-body manager-card">
+                    <h3 ><i class="fa-solid fa-user-tie"></i></h3>
+                    <h3 ><%= manager.username %></h3>
+                  </div>
+                </div>
+              </div>
+              <form action="/inventories/<%= inventory._id %>/managers/<%= manager._id %>?_method=DELETE" method="POST">
+                <button class="remove-button" type="submit">
+                  <i class="fa-solid fa-user-xmark "></i>
+                </button>
+              </form>
+            </div>
+          <% }) %>
+        </div>
         <form action="/inventories/<%= inventory._id %>/managers" method="post">
           <select name="managerId">
             <% otherUsers.forEach(u => { %>
               <option value="<%= u._id %>"><%= u.username%></option>
             <% }) %>
           </select>
-          <button type="submit">Add</button>
+          <button class="add-button" type="submit">
+            <i class="fa-solid fa-square-plus fa-2x"></i>
+          </button>
         </form><br>
         
       <% } %>
