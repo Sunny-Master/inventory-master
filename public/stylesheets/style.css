@@ -90,7 +90,7 @@ main {
   width: 15rem;
   background-color: white;
   /* border: 2px solid black; */
-  border-radius: 10px;
+  border-radius: 1rem;
   color: #424748;
   padding: 0.5rem;
   justify-content: center;
@@ -107,13 +107,7 @@ main {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 0 10px;
 }
-
-/* .card-title {
-  font-size: 24px;
-  margin: 0 10px;
-} */
 
 .card-data {
   margin: 0;
@@ -122,18 +116,18 @@ main {
 
 form {
   display: flex;
-  gap: 10px;
-  font-size: 20px;
-  max-width: 320px;
+  gap: 1rem;
+  font-size: 2rem;
+  max-width: 29.3rem;
   flex-wrap: wrap;
   justify-content: end;
   align-items: center;
 }
 
 form * {
-  padding: 5px;
-  border-radius: 5px;
-  font-size: 20px;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  font-size: 1.5rem;
 }
 
 .auth {
@@ -141,11 +135,11 @@ form * {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 8px;
+  gap: 0.8rem;
 }
 
 select, input, textarea {
-  width: 200px;
+  width: 20rem;
   text-align: center;
   vertical-align: middle;
 }
