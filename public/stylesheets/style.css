@@ -105,6 +105,7 @@ main>section {
   padding: 0.5rem 3rem 3rem 3rem;
   max-width: fit-content;
   margin: 10%;
+  border-radius: 1rem;
 }
 
 section.inventories {
@@ -124,9 +125,31 @@ section.inventory h1 {
 
 .title {
   background-color: #424748;
-  padding: 0 5rem;
+  padding: 1rem 5rem;
   border-radius: 1rem;
-  font-size: 1.25rem;
+  /* font-size: 1.25rem; */
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.85), 0 4px 8px 0 rgba(0, 0, 0, 0.85);
+  margin: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-card {
+  background-color: rgba(0, 0, 0, 0.8);
+  padding: 1rem 5rem;
+  border-radius: 1rem;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.85), 0 4px 8px 0 rgba(0, 0, 0, 0.85);
+  margin: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-card > form {
+  margin-bottom: 1rem;
 }
 
 h1 {
@@ -149,13 +172,13 @@ h1 {
 .card {
   display: flex;
   width: 15rem;
-  background-color: azure;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: azure;
   /* border: 2px solid black; */
   border-radius: 1rem;
-  color: #424748;
   padding: 0.5rem;
   justify-content: center;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.85), 0 6px 20px 0 rgba(0, 0, 0, 0.85);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.85), 0 4px 8px 0 rgba(0, 0, 0, 0.85);
 }
 
 .card:hover {
@@ -171,7 +194,7 @@ h1 {
 }
 
 .card-data {
-  margin: 0;
+  margin-top: 1rem;
 
 }
 
