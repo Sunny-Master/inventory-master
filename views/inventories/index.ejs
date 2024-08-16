@@ -1,9 +1,11 @@
 <%- include('../partials/html-head') %>
 <%- include('../partials/nav') %>
 
-<main class="bg-blurr-dark">
+<main class="bg-blur">
   <section class="inventories">
-    <h1><%= title %></h1>
+    <div class="title">
+      <h1><%= title %></h1>
+    </div>
     <div class="card-container">
       <% inventoriesToShow.forEach(inventory => { %>
         <a class="text-decoration-none" href="/inventories/<%= inventory._id %>">
