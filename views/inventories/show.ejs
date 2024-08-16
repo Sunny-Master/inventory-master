@@ -33,10 +33,16 @@
               <td><%= item.unit %></td>
               <td><%= item.utility %></td>
               <td>
-                <a class="edit-button" href="/inventories/<%= inventory._id %>/items/<%= item._id %>/edit"><button>Edit</button></a>
+                <a href="/inventories/<%= inventory._id %>/items/<%= item._id %>/edit">
+                  <button class="edit-button">
+                    <i class="fa-solid fa-pen-to-square"></i>
+                  </button>
+                </a>
                 <% if (isOwner) { %>
                   <form class="inline" action="/inventories/<%= inventory._id %>/items/<%= item._id %>?_method=DELETE" method="POST">
-                    <button class="remove-button" type="submit">X</button>
+                    <button class="remove-button" type="submit">
+                      <i class="fa-solid fa-trash-can"></i>
+                    </button>
                   </form>
                 <% } %>
               </td>
@@ -72,7 +78,7 @@
                 </td>
                 <td>
                   <form action="/inventories/<%= inventory._id %>/managers/<%= manager._id %>?_method=DELETE" method="POST">
-                    <button id="remove-manager" type="submit">
+                    <button class="remove-button" type="submit">
                       <i class="fa-solid fa-user-xmark "></i>
                     </button>
                   </form>

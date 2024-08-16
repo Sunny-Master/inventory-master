@@ -1,7 +1,7 @@
 <%- include('../partials/html-head') %>
 <%- include('../partials/nav') %>
 
-<main>
+<main class="bg-blur">
   <section class="inventory">
     <h1><%= title %></h1>
     <% if (isManager) { %>
@@ -29,10 +29,12 @@
               <td><%= suggestion.status %></td>
               <th><%= suggestion.author.username %></th>
               <td>
-                  <a href="/inventories/<%= inventory._id %>/suggestions/<%= suggestion._id %>">Details</a>
+                  <a href="/inventories/<%= inventory._id %>/suggestions/<%= suggestion._id %>"><button>Details</button></a>
                   <% if (suggestion.author.equals(user?._id) || isOwner) { %>
                     <form class="inline" action="/inventories/<%= inventory._id %>/suggestions/<%= suggestion._id %>?_method=DELETE" method="POST">
-                      <button class="remove-btn" type="submit">X</button>
+                      <button class="remove-button" type="submit">
+                        <i class="fa-solid fa-trash-can"></i>
+                      </button>
                     </form>
                   <% } %>
               </td>

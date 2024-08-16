@@ -9,31 +9,37 @@
     <div class="form-card">
       <h2>Create an Inventory</h2>
       <form action="/inventories" method="post">
-        <input type="text" name="name" placeholder="Name of Inventory">
+        <input type="text" required name="name" placeholder="Name of Inventory">
         <button type="submit">Create</button>
       </form>
     </div>
-
     <div class="title">
       <h2>Owned Inventories</h2>
     </div>
-    
     <div class="card-container">
       <% selectedUser.ownedInventories.forEach(inventory => { %>
-        <form action="/inventories/<%= inventory._id %>?_method=DELETE" method="POST">
-          <a href="/inventories/<%= inventory._id %>">
-            <div class="card">
-              <div class="card-body">
-                <h2 class="card-data"><%= inventory.name %></h2>
-                <p>(<%= inventory.privateView ? "Private" : "Public" %>)</p>
+        <div class="card card-holder">
+          <div class="card-body">
+            <a href="/inventories/<%= inventory._id %>">
+              <div class="card">
+                <div class="card-body">
+                  <h2 class="card-data"><%= inventory.name %></h2>
+                  <p>(<%= inventory.privateView ? "Private" : "Public" %>)</p>
+                </div>
               </div>
-            </div>
-          </a>
-          <button class="remove-button" type="submit">X</button>
-        </form>
+            </a>
+          </div>
+          <form action="/inventories/<%= inventory._id %>?_method=DELETE" method="POST">
+            <button class="remove-button" type="submit">
+              <i class="fa-solid fa-trash-can fa-2x"></i>
+            </button>
+          </form>
+        </div>
       <% }) %>
     </div>
-    <h2>Managed Inventories</h2>
+    <div class="title">
+      <h2>Managed Inventories</h2>
+    </div>
     <div class="card-container">
       <% selectedUser.managedInventories.forEach(inventory => { %>
           <a href="/inventories/<%= inventory._id %>">

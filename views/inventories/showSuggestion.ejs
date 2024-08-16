@@ -1,7 +1,7 @@
 <%- include('../partials/html-head') %>
 <%- include('../partials/nav') %>
 
-<main>
+<main class="bg-blur">
   <section>
     <h1><%= title %></h1>
     <% if (isSuggestionEditable) { %>
@@ -53,43 +53,45 @@
       </form>
       <a href="/inventories/<%= inventory._id %>/suggestions"><button>Back</button></a>
     <% } else { %>
-      <label>
-        Suggested By: 
-        <input 
-        type="text" 
-        name="author" 
-        disabled 
-        value="<%= suggestion.author.username %>"
-        >
-      </label>
-      <label>
-        Need to:
-        <input type="text" name="suggestion.type" value="<%= suggestion.type %>" disabled>
-      </label>
-      <label>
-        Item Name:
-        <input type="text" name="item.name" value="<%= suggestion.item.name %>" disabled>
-      </label>
-      <label>
-        Brand:
-        <input type="text" name="item.brand" value="<%= suggestion.item.brand %>" disabled>
-      </label>
-      <label>
-        Quantity:
-        <input type="number" name="item.quantity" value="<%= suggestion.item.quantity %>" disabled>
-      </label>
-      <label>
-        Unit:
-        <input type="text" name="item.unit" value="<%= suggestion.item.unit %>" disabled>
-      </label>
-      <label>
-        Utility:
-        <input type="range" name="item.utility" min="1" max="10" <%= suggestion.item.utility %> disabled>
-      </label>
-      <label>
-        Comment:
-        <textarea name="comment" disabled><%= suggestion.comment %></textarea>
-      </label>
+      <form action="">
+        <label>
+          Suggester: 
+          <input 
+          type="text" 
+          name="author" 
+          disabled 
+          value="<%= suggestion.author.username %>"
+          >
+        </label>
+        <label>
+          Need to:
+          <input type="text" name="suggestion.type" value="<%= suggestion.type %>" disabled>
+        </label>
+        <label>
+          Item Name:
+          <input type="text" name="item.name" value="<%= suggestion.item.name %>" disabled>
+        </label>
+        <label>
+          Brand:
+          <input type="text" name="item.brand" value="<%= suggestion.item.brand %>" disabled>
+        </label>
+        <label>
+          Quantity:
+          <input type="number" name="item.quantity" value="<%= suggestion.item.quantity %>" disabled>
+        </label>
+        <label>
+          Unit:
+          <input type="text" name="item.unit" value="<%= suggestion.item.unit %>" disabled>
+        </label>
+        <label>
+          Utility:
+          <input type="range" name="item.utility" min="1" max="10" <%= suggestion.item.utility %> disabled>
+        </label>
+        <label>
+          Comment:
+          <textarea name="comment" rows="3" cols = "50" disabled><%= suggestion.comment %></textarea>
+        </label>
+      </form>
       <% if (isOwner && !isStatusUpdated) { %>
         <form action="/inventories/<%= inventory._id %>/suggestions/<%= suggestion._id %>/status?_method=PATCH" method="POST">
           <div required class="radio-input">
@@ -99,8 +101,12 @@
           </div>
           <button type="submit">Submit</button>
         </form>
-      <% } else { %>         
-        <label>Status: <input type="text" value="<%= suggestion.status %>" disabled></label>
+      <% } else { %>        
+          <div class="details">
+            <label>Status:</label> 
+            <h3 class="inline"><%= suggestion.status %></h3>
+          </div>
+        
       <% } %>
       <a href="/inventories/<%= inventory._id %>/suggestions"><button>Back</button></a>
     <% } %>
