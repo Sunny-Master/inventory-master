@@ -2,47 +2,49 @@
 <%- include('../partials/nav') %>
 
 <main>
-  <h1><%= title %></h1>
-  <% if (isManager) { %>
-    <form action="/inventories/<%= inventory._id %>/suggestions" method="post">
-      <label>
-        Need to:
-        <input type="text" name="" value="Add" disabled>
-      </label>
-      <input type="hidden" name="type" value="Add">
-      <label>
-        Item Name:
-        <input type="text" name="item.name" placeholder="Add Item Name" required>
-      </label>
-      <label>
-        Brand:
-        <input type="text" name="item.brand" placeholder="Brand Name">
-      </label>
-      <label>
-        Quantity:
-        <input type="number" name="item.quantity" placeholder="Numerical Qty">
-      </label>
-      <label>
-        Unit:
-        <select name="item.unit" >
-          <option selected value="count(s)">Select Qty unit</option>
-          <option value="count(s)">count(s)</option>
-          <option value="lb(s)">lb(s)</option>
-          <option value="ltr(s)">ltr(s)</option>
-        </select>
-      </label>
-      <label>
-        Utility:
-        <input type="range" name="item.utility" min="1" max="10" value="3">
-      </label>
-      <label>
-        Comment:
-        <textarea name="comment"></textarea>
-      </label>
-      <button type="submit">Add</button>
-    </form>
-    <a href="/inventories/<%= inventory._id %>/suggestions"><button>Back</button></a>
-  <% } %>
+  <section>
+    <h1><%= title %></h1>
+    <% if (isManager) { %>
+      <form action="/inventories/<%= inventory._id %>/suggestions" method="post">
+        <label>
+          Need to:
+          <input type="text" name="" value="Add" disabled>
+        </label>
+        <input type="hidden" name="type" value="Add">
+        <label>
+          Item Name:
+          <input type="text" name="item.name" placeholder="Add Item Name" required>
+        </label>
+        <label>
+          Brand:
+          <input type="text" name="item.brand" placeholder="Brand Name">
+        </label>
+        <label>
+          Quantity:
+          <input type="number" name="item.quantity" placeholder="Numerical Qty">
+        </label>
+        <label>
+          Unit:
+          <select name="item.unit" >
+            <option selected value="count(s)">Select Qty unit</option>
+            <option value="count(s)">count(s)</option>
+            <option value="lb(s)">lb(s)</option>
+            <option value="ltr(s)">ltr(s)</option>
+          </select>
+        </label>
+        <label>
+          Utility:
+          <input type="range" name="item.utility" min="1" max="10" value="3">
+        </label>
+        <label>
+          Comment:
+          <textarea name="comment"></textarea>
+        </label>
+        <button type="submit">Add</button>
+      </form>
+      <a href="/inventories/<%= inventory._id %>/suggestions"><button>Back</button></a>
+    <% } %>
+  </section>
 </main>
 
 <%- include('../partials/footer') %>

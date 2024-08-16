@@ -2,45 +2,48 @@
 <%- include('../partials/nav') %>
 
 <main>
-  <h1><%= title %></h1>
-  <% if (isManager) { %>
-    <a href="/inventories/<%= inventory._id %>/suggestions/new">
-      <button>Add New</button>
-    </a>
-  <% } %>
-  <% if (isAuthorizedUser) { %>
-    <h2>Suggestions</h2>
-    <table>
-      <thead>
-        <tr>
-          <th>Type</th>
-          <th>Item</th>
-          <th>Status</th>
-          <th>Suggested By</th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody>
-        <% inventory.suggestions.forEach(suggestion => { %>
+  <section class="inventory">
+    <h1><%= title %></h1>
+    <% if (isManager) { %>
+      <a href="/inventories/<%= inventory._id %>/suggestions/new">
+        <button>Add New</button>
+      </a>
+    <% } %>
+    <% if (isAuthorizedUser) { %>
+      <h2>Suggestions</h2>
+      <table>
+        <thead>
           <tr>
-            <td><%= suggestion.type %></td>
-            <td><%= suggestion.item.name %></td>
-            <td><%= suggestion.status %></td>
-            <th><%= suggestion.author.username %></th>
-            <td>
-                <a href="/inventories/<%= inventory._id %>/suggestions/<%= suggestion._id %>">Details</a>
-                <% if (suggestion.author.equals(user?._id) || isOwner) { %>
-                  <form class="inline" action="/inventories/<%= inventory._id %>/suggestions/<%= suggestion._id %>?_method=DELETE" method="POST">
-                    <button class="remove-btn" type="submit">X</button>
-                  </form>
-                <% } %>
-            </td>
+            <th>Type</th>
+            <th>Item</th>
+            <th>Status</th>
+            <th>Suggested By</th>
+            <th></th>
           </tr>
-        <% }) %>
-      </tbody>
-    </table>
-  <% } %>
-  <a href="/inventories/<%= inventory._id %>"><button>Back</button></a>  
+        </thead>
+        <tbody>
+          <% inventory.suggestions.forEach(suggestion => { %>
+            <tr>
+              <td><%= suggestion.type %></td>
+              <td><%= suggestion.item.name %></td>
+              <td><%= suggestion.status %></td>
+              <th><%= suggestion.author.username %></th>
+              <td>
+                  <a href="/inventories/<%= inventory._id %>/suggestions/<%= suggestion._id %>">Details</a>
+                  <% if (suggestion.author.equals(user?._id) || isOwner) { %>
+                    <form class="inline" action="/inventories/<%= inventory._id %>/suggestions/<%= suggestion._id %>?_method=DELETE" method="POST">
+                      <button class="remove-btn" type="submit">X</button>
+                    </form>
+                  <% } %>
+              </td>
+            </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    <% } %>
+    <a href="/inventories/<%= inventory._id %>"><button>Back</button></a>
+  </section>
+    
 </main>
 
 <%- include('../partials/footer') %>
