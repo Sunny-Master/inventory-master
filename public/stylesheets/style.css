@@ -18,22 +18,14 @@ in most browser configurations this will be 10px */
 }
 
 body {
-  background: url(https://i.imgur.com/Q9w8e5p.png);
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center center;
+  
   /* Use a system font, if none are available use an available sans-serif font */
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
   margin: 0;
   padding: 0;
   min-height: 100vh;
-}
-
-@media (max-width: 768px) {
-  body {
-    background-size: cover;
-    background-position: top center;
-  }
+  display: flex;
+  flex-direction: column;
 }
 
 nav {
@@ -78,15 +70,54 @@ nav > a.active {
 }
 
 main {
+  flex: 1;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  background: url(https://i.imgur.com/Q9w8e5p.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
 }
 
-/* h1 {
-  font-size: 25;
-} */
+@media (max-width:768px) {
+  main {
+    background-size: cover;
+    background-position: center;
+  }
+}
+
+@media (max-width: 400px) {
+  nav {
+    justify-content: space-evenly;
+  }
+  nav > a {
+    margin: 0.1rem;
+    padding: 0.2rem;
+  }
+  #home-button {
+    margin: 0;
+    padding: 1rem;
+  }
+}
+
+main.bg-blur {
+  background: url(https://i.imgur.com/YhfKwtj.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+main>section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.9);
+  color: azure;
+  padding: 0.5rem 3rem 3rem 3rem;
+  max-width: fit-content;
+}
 
 .card-container {
   display: flex;
