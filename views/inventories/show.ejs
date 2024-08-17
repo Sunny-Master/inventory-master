@@ -35,13 +35,13 @@
               <td>
                 <a href="/inventories/<%= inventory._id %>/items/<%= item._id %>/edit">
                   <button class="edit-button">
-                    <i class="fa-solid fa-pen-to-square"></i>
+                    <i class="fa-solid fa-pen-to-square fa-2x"></i>
                   </button>
                 </a>
                 <% if (isOwner) { %>
                   <form class="inline" action="/inventories/<%= inventory._id %>/items/<%= item._id %>?_method=DELETE" method="POST">
                     <button class="remove-button" type="submit">
-                      <i class="fa-solid fa-trash-can"></i>
+                      <i class="fa-solid fa-trash-can fa-2x"></i>
                     </button>
                   </form>
                 <% } %>

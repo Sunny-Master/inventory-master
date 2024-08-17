@@ -153,15 +153,13 @@ section.inventory h1 {
   margin-bottom: 1rem;
 }
 
-
-
 .card-container {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
   gap: 1.5rem;
   margin: 1.5rem;
-  max-width: fit-content;
+  max-width: 60rem;
 }
 
 .text-decoration-none {
@@ -306,12 +304,14 @@ button:hover {
   justify-content: space-between;
   width: 90%;
   margin: 1rem;
+  max-width: 55rem;
 }
 
 table {
   font-size: 1.5rem;
   border-collapse: collapse;
   margin: 1rem;
+  max-width: 55rem;
 }
 
 table thead th {
@@ -393,14 +393,19 @@ td {
     margin: 0.5rem 1rem;
     padding: 0.5rem;
   }
-  table, table button {
-    font-size: 1rem;
+  table {
+    font-size: 1.15rem;
     min-width: max-content;
-    margin: 0.3rem 0; 
+    margin: 0.6rem; 
+  }
+  table button {
+    margin: 0; 
+    padding: 0.1rem;
+    font-size: 1rem;
   }
   table td {
-    padding: 0.2rem 0.5rem;
-    max-width: 7.5rem;
+    padding: 0.18rem;
+    max-width: 7rem;
   }
 }
 

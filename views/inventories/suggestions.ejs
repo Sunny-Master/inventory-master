@@ -31,13 +31,13 @@
               <td>
                 <a href="/inventories/<%= inventory._id %>/suggestions/<%= suggestion._id %>">
                   <button class="edit-button">
-                    <i class="fa-solid fa-circle-info"></i>
+                    <i class="fa-solid fa-circle-info fa-2x"></i>
                   </button>
                 </a>
                 <% if (suggestion.author.equals(user?._id) || isOwner) { %>
                   <form class="inline" action="/inventories/<%= inventory._id %>/suggestions/<%= suggestion._id %>?_method=DELETE" method="POST">
                     <button class="remove-button" type="submit">
-                      <i class="fa-solid fa-trash-can"></i>
+                      <i class="fa-solid fa-trash-can fa-2x"></i>
                     </button>
                   </form>
                 <% } %>
