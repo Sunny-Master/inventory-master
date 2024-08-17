@@ -1,63 +1,48 @@
-# MEN Stack with Session Auth Template
+# Inventory Master
+![app home page](https://i.imgur.com/4R0EGYl.png)
 
-This is a MEN Stack session auth template.
+## Overview
+Inventory Master is a personal inventory management web-app. Users can manage their personal or home inventory items with option to add other users as "Managers" for updating the quantity of the items as and when that item is used.  
 
-Use this to go build things! 🚀
+## Motivation
+As members of a joint-family household, we have always found it overwhelming to track the items and their quantities in the household. The motivation to better manage my home and to keep track of the quantities of all the items in kitchen, pantry, laundry, bedrooms etc., resulted in conceptualization of this app. 
 
-## To Use This Template
+## Getting Started
+Click on the link below to open the "Inventory Master" in your web page, and "Sign up" to start creating and managing your personal and shared inventories!!
 
-__Replace `<name-of-your-app-here>` (including the `<` and `>`) in the commands below with the name of your app!__
+> # [Click Here to Open "Inventory Master"](https://inventory-master-60711f64e37d.herokuapp.com/)
 
-```bash
-git clone https://github.com/SEI-Remote/men-stack-session-auth-template.git <name-of-your-app-here>
-cd <name-of-your-app-here>
-```
+### Planning 
 
-Once you are in the project directory:
+* [Trello Board](https://trello.com/b/kNeAThYh/inventory-master)
 
-```bash
-rm -rf .git
-```
+## Technologies used
 
-Here's what your command line output should like after this step (note that the indicator that we are in a git repository is gone!)
+![html5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
+![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
+![Javascript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
+![Git](https://img.shields.io/badge/GIT-E44C30?style=for-the-badge&logo=git&logoColor=white)
+![Github](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)
+![HEROKU](https://img.shields.io/badge/Heroku-430098?style=for-the-badge&logo=heroku&logoColor=white)
+![NODE.JS](https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white)
+![MONGODB](https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white)
+![EXPRESS.JS](https://img.shields.io/badge/Express.js-404D59?style=for-the-badge)
+![SESSION](https://img.shields.io/badge/Session-000000.svg?style=for-the-badge&logo=Session&logoColor=white)
 
-<img src="https://i.imgur.com/L47kNOZ.png" alt="The command line before and after running the rm -rf .git command. Before git:(main) is visible indiating that the directory contains a git repository, after the command it is not.">
 
-Re-initialize a git repository:
 
-```bash
-git init
-```
+## Ice Box 🧊
 
-Create a repo for this project on GitHub and add that remote to your project with `git remote add origin Your-repo-URL-here`.
+- [x] Suggestions by Managers for adding or removing an item from inventory
+- [x] Suggestions approval or rejection by Owner which automatically adds or deletes an item in the Inventory
+- [x] Responsive design
+- [ ] Toggle to different views: Dark-mode and Light-mode
+- [ ] Unified Shopping List: with items automatically added from inventories of a User when quantity goes below a threshold
+- [ ] Unified Shopping List: with items automatically added from inventories of a User when quantity goes below a threshold
+- [ ] Unified Shopping List updation and fulfilment which would automatically update the item quantity in the respective inventory
+- [ ] Marketplace to interact with other users to trade for fulfilling the items in the shopping list
 
-Run npm i to fetch the template's dependencies:
+## Attributions
 
-```bash
-npm i
-```
-
-touch a .env file:
-
-```bash
-touch .env
-```
-
-Fill it with the following:
-
-```
-DATABASE_URL=XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-SESSION_SECRET=XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-```
-
-Replace the `DATABASE_URL` and `SESSION_SECRET` with values that you provide.
-
-Delete this `README.md` file and finally, make an initial commit:
-
-```bash
-git add .
-git commit -m "initial commit"
-git push origin main
-```
-
-You're done!
+- Icons: [Font Awesome](https://fontawesome.com/)
+- Background Image: [ChatGPT](https://chatgpt.com/)
