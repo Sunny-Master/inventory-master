@@ -7,7 +7,7 @@
     <% if (isSuggestionEditable) { %>
       <form action="/inventories/<%= inventory._id %>/suggestions/<%= suggestion._id %>/update?_method=PUT" method="post">
         <label>
-          Suggested By: 
+          Suggester: 
           <input 
           type="text" 
           name="author" 
@@ -46,7 +46,7 @@
         </label>
         <label>
           Comment:
-          <textarea name="comment" ><%= suggestion.comment %></textarea>
+          <textarea name="comment" rows="3" cols="50"><%= suggestion.comment %></textarea>
         </label>
         <label>Status: <input type="text" name="" value="<%= suggestion.status %>" disabled></label>        
         <button type="submit" >Update</button>
@@ -89,7 +89,7 @@
         </label>
         <label>
           Comment:
-          <textarea name="comment" rows="3" cols = "50" disabled><%= suggestion.comment %></textarea>
+          <textarea name="comment" rows="3" cols="50" disabled><%= suggestion.comment %></textarea>
         </label>
       </form>
       <% if (isOwner && !isStatusUpdated) { %>
