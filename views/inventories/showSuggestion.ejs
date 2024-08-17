@@ -7,7 +7,7 @@
     <% if (isSuggestionEditable) { %>
       <form action="/inventories/<%= inventory._id %>/suggestions/<%= suggestion._id %>/update?_method=PUT" method="post">
         <label>
-          Suggested By: 
+          Suggester: 
           <input 
           type="text" 
           name="author" 
