@@ -2,10 +2,10 @@
 ![app home page](https://i.imgur.com/4R0EGYl.png)
 
 ## Overview
-Inventory Master is a personal inventory management web-app. Users can manage their personal or home inventory items with option to add other users as "Managers" for updating the quantity of the items as and when that item is used.  
+**Inventory Master** is an inventory management web-app that users can use manage their inventory items. They also have an option to add other users as "Managers" for updating the quantity of the items, as and when that item is used.  
 
 ## Motivation
-As members of a joint-family household, we have always found it overwhelming to track the items and their quantities in the household. The motivation to better manage my home and to keep track of the quantities of all the items in kitchen, pantry, laundry, bedrooms etc., resulted in conceptualization of this app. 
+As a member of a joint-family household, I have always found it overwhelming to track the items and their quantities in our home. The motivation to better manage the household and to keep track of the quantities of all the items in different rooms resulted in conceptualization of this app. 
 
 ## Getting Started
 Click on the link below to open the "Inventory Master" in your web page, and "Sign up" to start creating and managing your personal and shared inventories!!
@@ -34,12 +34,11 @@ Click on the link below to open the "Inventory Master" in your web page, and "Si
 ## Ice Box 🧊
 
 - [x] Suggestions by Managers for adding or removing an item from inventory
-- [x] Suggestions approval or rejection by Owner which automatically adds or deletes an item in the Inventory
+- [x] Approval or rejection of suggestions by Owner which automatically adds or deletes an item in the Inventory
 - [x] Responsive design
 - [ ] Toggle to different views: Dark-mode and Light-mode
 - [ ] Unified Shopping List: with items automatically added from inventories of a User when quantity goes below a threshold
-- [ ] Unified Shopping List: with items automatically added from inventories of a User when quantity goes below a threshold
-- [ ] Unified Shopping List updation and fulfilment which would automatically update the item quantity in the respective inventory
+- [ ] Unified Shopping List fulfilment which would automatically update the item quantity in the respective inventory
 - [ ] Marketplace to interact with other users to trade for fulfilling the items in the shopping list
 
 ## Attributions
