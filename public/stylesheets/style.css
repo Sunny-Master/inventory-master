@@ -353,8 +353,6 @@ td {
   background-color: rgba(0, 0, 0, 0.5);
 }
 
-
-
 .radio-input {
   display: flex;
   flex-direction: column;
@@ -395,13 +393,18 @@ td {
     margin: 0.5rem 1rem;
     padding: 0.5rem;
   }
-
   table, table button {
     font-size: 1rem;
+    min-width: max-content;
+    margin: 0.3rem 0; 
+  }
+  table td {
+    padding: 0.2rem 0.5rem;
+    max-width: 7.5rem;
   }
 }
 
-@media (min-width: 415px) and (max-width: 630px) {
+@media (min-width: 410px) and (max-width: 630px) {
   nav > a {
     margin: 0 4%;
   }

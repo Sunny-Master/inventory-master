@@ -2,7 +2,7 @@
 <%- include('../partials/nav') %>
 
 <main class="bg-blur">
-  <section class="inventory">
+  <section>
     <h1><%= title %></h1>
     <% if (isManager) { %>
       <a href="/inventories/<%= inventory._id %>/suggestions/new">
@@ -17,8 +17,8 @@
             <th>Type</th>
             <th>Item</th>
             <th>Status</th>
-            <th>Suggested By</th>
-            <th></th>
+            <th>Suggester</th>
+            <th>Actions</th>
           </tr>
         </thead>
         <tbody>
@@ -29,14 +29,18 @@
               <td><%= suggestion.status %></td>
               <th><%= suggestion.author.username %></th>
               <td>
-                  <a href="/inventories/<%= inventory._id %>/suggestions/<%= suggestion._id %>"><button>Details</button></a>
-                  <% if (suggestion.author.equals(user?._id) || isOwner) { %>
-                    <form class="inline" action="/inventories/<%= inventory._id %>/suggestions/<%= suggestion._id %>?_method=DELETE" method="POST">
-                      <button class="remove-button" type="submit">
-                        <i class="fa-solid fa-trash-can"></i>
-                      </button>
-                    </form>
-                  <% } %>
+                <a href="/inventories/<%= inventory._id %>/suggestions/<%= suggestion._id %>">
+                  <button class="edit-button">
+                    <i class="fa-solid fa-circle-info"></i>
+                  </button>
+                </a>
+                <% if (suggestion.author.equals(user?._id) || isOwner) { %>
+                  <form class="inline" action="/inventories/<%= inventory._id %>/suggestions/<%= suggestion._id %>?_method=DELETE" method="POST">
+                    <button class="remove-button" type="submit">
+                      <i class="fa-solid fa-trash-can"></i>
+                    </button>
+                  </form>
+                <% } %>
               </td>
             </tr>
           <% }) %>
