@@ -18,7 +18,6 @@ in most browser configurations this will be 10px */
 }
 
 body {
-  
   /* Use a system font, if none are available use an available sans-serif font */
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
   margin: 0;
@@ -88,17 +87,9 @@ main.bg-blur {
   background-position: center;
 }
 
-/* main.bg-blur-dark {
-  background: url(https://i.imgur.com/YhfKwtj.png);
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-} */
-
 main>section {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
   background-color: rgba(0, 0, 0, 0.8);
   color: azure;
@@ -109,7 +100,7 @@ main>section {
 }
 
 section.inventories {
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.4);
 }
 
 section.inventory {
@@ -126,7 +117,7 @@ section.inventory h1 {
 
 .title {
   background-color: #424748;
-  padding: 1rem 5rem;
+  padding: 0 5rem;
   border-radius: 1rem;
   /* font-size: 1.25rem; */
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.85), 0 4px 8px 0 rgba(0, 0, 0, 0.85);
@@ -138,8 +129,8 @@ section.inventory h1 {
 }
 
 .form-card {
-  background-color: rgba(0, 0, 0, 0.8);
-  padding: 1rem 5rem;
+  background-color: #424748;
+  padding: 1rem;
   border-radius: 1rem;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.85), 0 4px 8px 0 rgba(0, 0, 0, 0.85);
   margin: 1rem;
@@ -175,12 +166,13 @@ section.inventory h1 {
   border-radius: 1rem;
   padding: 0.5rem;
   justify-content: center;
+  align-items: center;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5), 0 4px 20px 0 rgba(0, 0, 0, 0.5);
 }
 
 .card:hover {
-  background-color: #424748;
-  color: azure;
+  background-color: azure;
+  color: #424748;
 }
 
 .card-body {
@@ -192,7 +184,6 @@ section.inventory h1 {
 
 .card-data {
   margin-top: 1rem;
-
 }
 
 .card-holder {
@@ -258,7 +249,7 @@ input:disabled, textarea:disabled {
 button {
   border-radius: 0.4rem;
   border: none;
-  background-color: #b8c0c2;
+  background-color: azure;
   padding: 0.75rem;
   text-decoration: none;
   font-size: 1.2rem;
@@ -332,7 +323,7 @@ thead a:hover{
 }
 
 table td {
-  padding: 0.4rem 1rem;
+  padding: 0.4rem 0.8rem;
   text-align: center;
   vertical-align: middle;
 }
@@ -394,7 +385,7 @@ td {
     padding: 0.5rem;
   }
   table {
-    font-size: 1.15rem;
+    font-size: 1.3rem;
     min-width: max-content;
     margin: 0.6rem; 
   }
@@ -416,19 +407,9 @@ td {
   #home-button {
     margin: 0 15%;
   }
-
 }
-
 
 .inline {
   display: inline;
 }
 
-/* div {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  gap: 2px;
-  align-items: center;
-  margin: 0;
-} */
