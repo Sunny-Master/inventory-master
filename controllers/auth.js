@@ -3,17 +3,27 @@ import { User } from '../models/user.js'
 
 function newSignUp(req, res) {
   res.render('auth/sign-up', {
-    title: 'Sign up'
+    title: 'Sign up',
+    userInDatabase: false,
+    passwordMismatch: false
   })
 }
 
 async function signUp(req, res) {
   const userInDatabase = await User.findOne({ username: req.body.username })
   if (userInDatabase) {
-    return res.send('Username already taken.')
+    return res.render('auth/sign-up', {
+      title: 'Sign up',
+      userInDatabase,
+      passwordMismatch: false
+    })
   }
   if (req.body.password !== req.body.confirmPassword) {
-    return res.send('Password and Confirm Password must match')
+    return res.render('auth/sign-up', {
+      title: 'Sign up',
+      userInDatabase: false,
+      passwordMismatch: true
+    })
   }
   const hashedPassword = bcrypt.hashSync(req.body.password, 10)
   req.body.password = hashedPassword
