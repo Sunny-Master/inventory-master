@@ -14,7 +14,7 @@
     href="/users/<%= user._id %>"
     class=<%= title === 'My Inventories' ? 'active' : '' %>
     >
-    My Inventories
+    <%= user.username %>'s Profile
     </a>
     <a href="/auth/sign-out">Sign out</a>
   <% } else { %>
