@@ -1,0 +1,15 @@
+<%- include('../partials/html-head') %>
+<%- include('../partials/nav') %>
+
+<main class="bg-blur">
+  <section>
+    <h1>Your Shopping List</h1>
+    <ul>
+      <% listItems.forEach(item => { %>
+        <li><%= item.name %> - <%= item.brand %></li>
+      <% }) %>
+    </ul>
+  </section>
+</main>
+
+<%- include('../partials/footer') %>
