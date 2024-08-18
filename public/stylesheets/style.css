@@ -301,8 +301,8 @@ button:hover {
 table {
   font-size: 1.5rem;
   border-collapse: collapse;
-  margin: 1rem;
-  max-width: 55rem;
+  margin: 1.5rem;
+  max-width: 60rem;
 }
 
 table thead th {
@@ -323,7 +323,7 @@ thead a:hover{
 }
 
 table td {
-  padding: 0.4rem 0.8rem;
+  padding: 0.4rem 1rem;
   text-align: center;
   vertical-align: middle;
 }
@@ -387,7 +387,7 @@ td {
   table {
     font-size: 1.3rem;
     min-width: max-content;
-    margin: 0.6rem; 
+    margin: 0.6rem 1.2rem; 
   }
   table button {
     margin: 0; 

@@ -11,8 +11,7 @@
           <tr>
             <th>Item</th>
             <th>Brand</th>
-            <th>Quantity</th>
-            <th>Unit</th>
+            <th>Qty.(unit)</th>
             <th>
               <% if (sortInventory) { %>
                 <a href="/inventories/<%= inventory._id %>">Utility</a>
@@ -29,8 +28,7 @@
             <tr>
               <td><%= item.name %></td>
               <td><%= item.brand%></td>
-              <td><%= item.quantity %></td>
-              <td><%= item.unit %></td>
+              <td><%= item.quantity %> (<%= item.unit %>)</td>
               <td><%= item.utility %></td>
               <td>
                 <a href="/inventories/<%= inventory._id %>/items/<%= item._id %>/edit">
@@ -109,8 +107,7 @@
           <tr>
             <th>Item</th>
             <th>Brand</th>
-            <th>Quantity</th>
-            <th>unit</th>
+            <th>Qty.(unit)</th>
             <th>
               <% if (sortInventory) { %>
                 <a href="/inventories/<%= inventory._id %>">Utility</a>
@@ -126,8 +123,7 @@
             <tr>
               <td><%= item.name %></td>
               <td><%= item.brand%></td>
-              <td><%= item.quantity %></td>
-              <td><%= item.unit %></td>
+              <td><%= item.quantity %> (<%= item.unit %>)</td>
               <td><%= item.utility %></td>
             </tr>
           <% }) %>

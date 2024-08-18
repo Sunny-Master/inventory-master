@@ -23,6 +23,11 @@ const itemSchema = new Schema({
     enum: ['lb(s)', 'ltr(s)', 'count(s)'],
     default: 'count(s)'
   },
+  threshold: {
+    type: Number,
+    min: 0,
+    default: 0,
+  },
   utility: {
     type: Number,
     min: 1,
