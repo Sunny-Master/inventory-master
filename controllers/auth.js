@@ -39,21 +39,28 @@ async function signUp(req, res) {
 
 function newSignIn(req, res) {
   res.render('auth/sign-in', {
-    title: 'Sign in'
+    title: 'Sign in',
+    loginFailed: false
   })
 }
 
 async function signIn(req, res) {
   const userInDatabase = await User.findOne({ username: req.body.username }).select('+password')
   if (!userInDatabase) {
-    return res.send('Login failed. Please try again.')
+    return res.render('auth/sign-in', {
+      title: 'Sign in',
+      loginFailed: true
+    })
   }
   const validPassword = bcrypt.compareSync(
     req.body.password,
     userInDatabase.password
   )
   if (!validPassword) {
-    return res.send('Login failed. Please try again.')
+    return res.render('auth/sign-in', {
+      title: 'Sign in',
+      loginFailed: true
+    })
   }
   req.session.user = {
     username: userInDatabase.username,
