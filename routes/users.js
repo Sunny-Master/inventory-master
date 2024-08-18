@@ -10,5 +10,6 @@ const router = Router()
 // protected routes
 router.get('/:userId', isSignedIn, usersCtrl.show)
 router.get('/:userId/shoppingList', isSignedIn, usersCtrl.showShoppingList)
+router.get('/:userId/shoppingList/items/:itemId', isSignedIn, usersCtrl.showShoppingListItem)
 
 export { router }

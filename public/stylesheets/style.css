@@ -199,6 +199,26 @@ section.inventory h1 {
   margin-right: 0.5rem;
 }
 
+.manager-card-holder {
+  max-width: 19rem;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.manager-card {
+  flex-direction: row;
+  gap: 1rem;
+  font-size: 1.2rem;
+  background: transparent;
+}
+
+.manager-card:hover {
+  background-color: none;
+}
+
+.hover-disabled {
+  pointer-events: none;
+}
+
 form {
   display: flex;
   gap: 1rem;
@@ -332,18 +352,6 @@ td {
   min-width: fit-content;
 }
 
-.manager-card-holder {
-  max-width: 19rem;
-  background-color: rgba(0, 0, 0, 0.5);
-}
-
-.manager-card {
-  flex-direction: row;
-  gap: 1rem;
-  font-size: 1.2rem;
-  background-color: rgba(0, 0, 0, 0.5);
-}
-
 .radio-input {
   display: flex;
   flex-direction: column;
@@ -395,7 +403,7 @@ td {
     font-size: 1rem;
   }
   table td {
-    padding: 0.18rem;
+    padding: 0.25rem;
     max-width: 7rem;
   }
 }

@@ -4,11 +4,39 @@
 <main class="bg-blur">
   <section>
     <h1>Your Shopping List</h1>
-    <ul>
-      <% listItems.forEach(item => { %>
-        <li><%= item.name %> - <%= item.brand %></li>
-      <% }) %>
-    </ul>
+    <table>
+      <thead>
+        <tr>
+          <th>Item</th>
+          <th>Brand</th>
+          <th>
+            <% if (sortItems) { %>
+              <a href="/users/<%= user._id %>/shoppingList">Utility</a>
+            <% } else { %>
+              <a href="/users/<%= user._id %>/shoppingList?sort=true">Utility</a>
+            <% } %>
+          </th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% sortItems ? listItems.sort((a, b) => a.utility - b.utility) : listItems.sort((a, b) => b.utility - a.utility)%>
+        <% listItems.forEach(item => { %>
+          <tr>
+            <td><%= item.name %></td>
+            <td><%= item.brand%></td>
+            <td><%= item.utility %></td>
+            <td>
+              <a href="/users/<%= user._id %>/shoppingList/items/<%= item._id %>">
+                <button class="edit-button">
+                  <i class="fa-solid fa-pen-to-square fa-2x"></i>
+                </button>
+              </a>
+            </td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
   </section>
 </main>
 

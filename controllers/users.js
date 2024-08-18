@@ -1,4 +1,5 @@
 import { User } from "../models/user.js"
+import { Inventory } from "../models/inventory.js"
 
 async function show(req, res) {
   try {
@@ -17,8 +18,9 @@ async function show(req, res) {
 async function showShoppingList(req, res) {
   try {
     const owner = await User.findById(req.params.userId)
-    .populate('shoppingList.inventories')
-    const listInventories = owner.shoppingList.inventories
+    .populate('ownedInventories')
+    const listInventories = owner.ownedInventories
+    const sortItems = !!req.query['sort']
     if (owner.equals(req.session.user._id)) {
       let listItems = []
       listInventories.forEach(inventory => {
@@ -27,7 +29,9 @@ async function showShoppingList(req, res) {
         })
       })
       res.render('users/showShoppingList', {
+        listInventories,
         listItems,
+        sortItems,
         title: `${owner.username}'s Shopping List`
       })
     } else {
@@ -39,7 +43,29 @@ async function showShoppingList(req, res) {
   }
 }
 
+async function showShoppingListItem(req, res) {
+  try {
+    const owner = await User.findById(req.params.userId)
+    // to find an Inventory document that contains a specific item, identified by itemId
+    const inventory = await Inventory.findOne({ "items._id": req.params.itemId })
+    const item = inventory.items.id(req.params.itemId)
+    if (owner.equals(req.session.user._id)) {
+      res.render('inventories/editItem', {
+      inventory,
+      item,
+      title: `Update Purchased ${inventory.name} Item` 
+    })
+    } else {
+      throw new Error(`🚫 Not authorized 🚫`)
+    }
+  } catch (error) {
+    console.log(error)
+    res.redirect(`/inventories/${req.params.inventoryId}`)
+  }
+}
+
 export {
   show,
   showShoppingList,
+  showShoppingListItem,
 }
