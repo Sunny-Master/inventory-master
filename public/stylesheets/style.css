@@ -393,7 +393,7 @@ td {
     padding: 0.5rem;
   }
   table {
-    font-size: 1.3rem;
+    font-size: 1.35rem;
     min-width: max-content;
     margin: 0.6rem 1.2rem; 
   }
@@ -403,7 +403,7 @@ td {
     font-size: 1rem;
   }
   table td {
-    padding: 0.25rem;
+    padding: 0.5rem;
     max-width: 7rem;
   }
 }
