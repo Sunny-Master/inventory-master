@@ -53,7 +53,8 @@ async function showShoppingListItem(req, res) {
       res.render('inventories/editItem', {
       inventory,
       item,
-      title: `Update Purchased ${inventory.name} Item` 
+      title: `Update Purchased ${inventory.name} Item`, 
+      origin: 'shoppingList'
     })
     } else {
       throw new Error(`🚫 Not authorized 🚫`)

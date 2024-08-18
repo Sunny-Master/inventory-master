@@ -142,7 +142,8 @@ async function editItem(req, res) {
       res.render('inventories/editItem', {
       inventory,
       item,
-      title: `Edit ${inventory.name} Item` 
+      title: `Edit ${inventory.name} Item`,
+      origin: 'inventory' 
     })
     } else {
       throw new Error(`🚫 Not authorized 🚫`)

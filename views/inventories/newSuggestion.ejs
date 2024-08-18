@@ -46,7 +46,11 @@
         </label>
         <button type="submit">Add</button>
       </form>
-      <a href="/inventories/<%= inventory._id %>/suggestions"><button>Back</button></a>
+      <a href="/inventories/<%= inventory._id %>/suggestions">
+        <button class="edit-button">
+          <i class="fa-solid fa-left-long fa-2x"></i>
+        </button>
+      </a>
     <% } %>
   </section>
 </main>

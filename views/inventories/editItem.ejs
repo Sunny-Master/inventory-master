@@ -46,7 +46,9 @@
           Utility:
           <input type="range" name="utility" min="1" max="10" value="<%= item.utility %>">
         </label>
-        <button type="submit">Update</button>
+        <button type="submit">
+          Update
+        </button>
       </form>
     <% } %>
     <% if (inventory.managers.includes(user?._id)) { %>
@@ -61,7 +63,19 @@
         <button type="submit">Send Suggestion</button>
       </form>
     <% } %>
-    <a href="/inventories/<%= inventory._id %>"><button>Back</button></a>
+    <% if (origin === "shoppingList") { %>
+      <a href="/users/<%= user._id %>/shoppingList">
+        <button class="edit-button">
+          <span><i class="fa-solid fa-left-long fa-3x"></i></span>
+        </button>
+      </a>
+    <% } else { %>
+      <a href="/inventories/<%= inventory._id %>">
+        <button class="edit-button">
+          <i class="fa-solid fa-left-long fa-2x"></i>
+        </button>
+      </a>
+    <% } %>
   </section>
 </main>
 
