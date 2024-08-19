@@ -22,7 +22,6 @@ async function create(req, res) {
     const inventory = await Inventory.create(req.body)
     const creator = await User.findById(req.body.owner)
     creator.ownedInventories.push(inventory)
-    creator.shoppingList.inventories.push(inventory)
     await creator.save()
     res.redirect(`/inventories/${inventory._id}/items/new`)
   } catch (error) {
@@ -73,7 +72,6 @@ async function deleteInventory(req, res) {
       )
       const inventoryOwner = await User.findById(req.session.user._id)
       inventoryOwner.ownedInventories.remove(inventory)
-      inventoryOwner.shoppingList.inventories.remove(inventory)
       await inventoryOwner.save()
       await inventory.deleteOne()
       res.redirect(`/users/${req.session.user._id}`)
@@ -326,6 +324,9 @@ async function updateSuggestion(req, res) {
   const inventory = await Inventory.findById(req.params.inventoryId)
   const suggestion = inventory.suggestions.id(req.params.suggestionId)
   const isAuthor = suggestion.author.equals(req.session.user._id)
+  for (let key in req.body) {
+    if(req.body[key] === "") delete req.body[key]
+  }
   try {
     if (isAuthor) {
       suggestion.set(req.body)
