@@ -33,13 +33,13 @@ Click the link below to open "Inventory Master" in your web browser, and "Sign u
 
 ## Ice Box 🧊 
 
-- [x] Suggestions by Managers for adding or removing an item from inventory
-- [x] Approval or rejection of suggestions by Owner which automatically adds or deletes an item in the Inventory
+- [x] Suggestions by Managers for adding or removing items from inventory
+- [x] Approval or rejection of suggestions by Owner, which automatically adds or deletes items in the Inventory
 - [x] Responsive design
-- [x] Unified Shopping List: with items automatically added from inventories of a User when quantity goes below a threshold
-- [x] Unified Shopping List fulfilment which would automatically update the item quantity in the respective inventory
-- [ ] Toggle to different views: Dark-mode and Light-mode
-- [ ] Marketplace to interact with other users to trade for fulfilling the items in the shopping list
+- [x] Unified Shopping List: Items are automatically added from the User's inventories when their quantities fall below a threshold
+- [x] Unified Shopping List fulfilment, which automatically updates item quantities in the respective inventory
+- [ ] Toggle between different views: Dark-mode and Light-mode
+- [ ] Marketplace for interacting with other users to trade items needed for fulfilling the shopping list
 
 ## Attributions 🙏 
 
