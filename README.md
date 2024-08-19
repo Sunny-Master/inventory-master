@@ -1,22 +1,22 @@
 # Inventory Master
 ![app home page](https://i.imgur.com/4R0EGYl.png)
 
-## ✨ Overview 
+## Overview ✨ 
 **Inventory Master** is an inventory management web-app that helps users to manage their inventories. Users can add other signed-up users as 'Managers' to update item quantities as they are used and to suggest adding new items or removing existing ones from the inventory. Additionally, there is a unified shopping list feature that helps users maintain their stock levels.
 
-## 🧠 Motivation 
+## Motivation 🧠 
 As a member of a joint-family household, I have always found it overwhelming to track the items and their quantities at home. The need for better household management and tracking item quantities in different rooms led to the idea of creating this app. 
 
-## 🕹️ Getting Started 
+## Getting Started 🕹️ 
 Click the link below to open "Inventory Master" in your web browser, and "Sign up" to start creating and managing your personal and shared inventories!
 
 > # [Click Here to Open "Inventory Master"](https://inventory-master-60711f64e37d.herokuapp.com/)
 
-### 🎨 Planning 
+### Planning 🎨 
 
 * [Trello Board](https://trello.com/b/kNeAThYh/inventory-master)
 
-## ⚙️ Technologies used 
+## Technologies used ⚙️
 
 ![html5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
 ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
@@ -31,7 +31,7 @@ Click the link below to open "Inventory Master" in your web browser, and "Sign u
 
 
 
-## 🧊 Ice Box 
+## Ice Box 🧊 
 
 - [x] Suggestions by Managers for adding or removing an item from inventory
 - [x] Approval or rejection of suggestions by Owner which automatically adds or deletes an item in the Inventory
@@ -41,7 +41,7 @@ Click the link below to open "Inventory Master" in your web browser, and "Sign u
 - [ ] Toggle to different views: Dark-mode and Light-mode
 - [ ] Marketplace to interact with other users to trade for fulfilling the items in the shopping list
 
-## 🙏 Attributions 
+## Attributions 🙏 
 
 - Icons: [Font Awesome](https://fontawesome.com/)
 - Background Image: [ChatGPT](https://chatgpt.com/)
