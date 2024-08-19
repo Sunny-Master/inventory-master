@@ -2,12 +2,11 @@
 <%- include('./partials/nav') %>
 
 <main>
-  <section>
-    <% if (!user) { %>
+  <% if (!user) { %>
+    <section>
       <h1><%= status %></h1>  
-    <% } %>
-  </section>
-  
+    </section>
+  <% } %>
 </main>
 
 <%- include('./partials/footer') %>
