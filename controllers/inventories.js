@@ -98,10 +98,8 @@ async function toggleView(req, res) {
 
 async function newItem(req, res) {
   try {
-    // find inventory by id
     const inventory = await Inventory.findById(req.params.inventoryId)
     .populate(['owner', 'items'])
-    // pass the inventory as 'locals' object to 'inventories/newItem.ejs'
     res.render('inventories/newItem', {
       inventory,
       title: `Add a ${inventory.name} Item`

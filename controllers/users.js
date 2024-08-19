@@ -39,7 +39,7 @@ async function showShoppingList(req, res) {
     }
   } catch (error) {
     console.log(error)
-    res.redirect('/')
+    res.redirect(`/users/${req.params.userId}`)
   }
 }
 
@@ -61,7 +61,7 @@ async function showShoppingListItem(req, res) {
     }
   } catch (error) {
     console.log(error)
-    res.redirect(`/inventories/${req.params.inventoryId}`)
+    res.redirect(`/users/${req.params.userId}`)
   }
 }
 
