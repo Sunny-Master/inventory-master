@@ -10,7 +10,7 @@ As a member of a joint-family household, I have always found it overwhelming to 
 ## Getting Started 🕹️ 
 Click the link below to open "Inventory Master" in your web browser, and "Sign up" to start creating and managing your personal and shared inventories!
 
-> # [Click Here to Open "Inventory Master"](https://inventory-master-55734dd20e03.herokuapp.com/)
+> # [Click Here to Open "Inventory Master"](https://itemwise-b44f22e20ec0.herokuapp.com/)
 
 ### Planning 🎨 
 
